@@ -9,56 +9,58 @@
 <body>
     <header>
         <nav>
-            <figure class="">
-                <img src="" alt="Logo">
+            <figure >
+                <a href="index.html">
+                <img class="logo" src="img/logo.png" alt="Logo"></a>
             </figure>
             
-            <div class="">
-                <h1>Tablas</h1>
-            </div>
-            <div>
-                <h2>Acerca de</h2>
-            </div>
+          
+                <ul class="lista">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="tablas.html">Tablas</a></li>
+                    <li><a href="acercade.html">Acerca de</a></li>
+                </ul>
+            
             
         </nav>
     </header>
-    <main>
-        <section>
-            <div class="btnSelec">
-                <button >Temperatura</button>
-            </div>
-            <div class="btnSelec">
-                <button>Frecuencia</button>
-            </div>
-            <div class="btnSelec">
-                <button>Longitud</button>
-            </div>
-            <div class="btnSelec">
-                <button >Tiempo</button>
-            </div>
-            <div class="btnSelec">
-                <button>Energia</button>
-            </div>
-        </section>
-    <section class="select">
-        <input type="text">
-        <select name="Selecion" id="">
-            <option value="">Seleccione una unidad</option>
-            <option value="">1</option>
-            <option value="">2</option>
-            <option value="">3</option>
-        </select>
-        <input type="text">
-        <select name="" id="">
-            <option value="">Seleccione una unidad</option>
-            <option value="">1</option>
-            <option value="">2</option>
-            <option value="">3</option>
-        </select>
-    </section>
+    <main class="container">
+        
+        <div class="botones">
+     
+            <button class="btnSelect" id="temperatura">Temperatura</button>
+            <button class="btnSelect" id="frecuencia">Frecuencia</button>
+            <button class="btnSelect" id="longitud">Longitud</button>
+            <button class="btnSelect" id="tiempo">Tiempo</button>
+            <button class="btnSelect" id="energia">Energia</button>
+       
+        </div>
+        <div class="select">
+            <input type="number">
+            <select name="Selecion" id="select1">
+                <option value="">Seleccione una unidad</option>
+                <option value="">1</option>
+                <option value="">2</option>
+                <option value="">3</option>
+            </select>
+        </div>
+        <svg  xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M160-280v-120h640v120H160Zm0-280v-120h640v120H160Z"/></svg>
+        <div class="select">
+            <input type="number">
+            <select name="" id="select2">
+                <option value="">Seleccione una unidad</option>
+                <option value="">1</option>
+                <option value="">2</option>
+                <option value="">3</option>
+            </select>
+        </div>
     </main>
     <footer>
         <script src="js/app.js"></script>
+        
+        <p>Contacto</p>
+        
+        
     </footer>
 </body>
 </html>

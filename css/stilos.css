@@ -1,17 +1,103 @@
-nav{
+@import url('https://fonts.googleapis.com/css2?family=Sixtyfour+Convergence&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sixtyfour+Convergence&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@100..800&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@100..800&display=swap');
+*{margin: 0; padding: 0; box-sizing: border-box;}
+html{height: 100%; width: 100%;}
+body{background-color: rgb(65, 65, 65);}
+nav {
+    display: flex;
+    justify-content: flex-end; /* Alinea el contenido del nav a la derecha */
     
-    display: inline-flex; 
-    
+}
+figure{
+    width: 10%;
+    height: 10%;
+}
+.logo{
+    width: 80%;
+    height: 90%;
+} 
+
+
+.lista {
+    display: flex; /* Cambiado de inline-flex a flex */
+    justify-content: flex-end; /* Alinea los elementos de la lista a la derecha */
+    padding: 0; /* Elimina el padding por defecto del ul */
+    margin: 0; /* Elimina el margin por defecto del ul */
+}
+
+li {
+    list-style: none;
+    padding: 10px;
+    text-align: right;
+    margin-right: 0; /* Asegura que no haya margen adicional a la derecha */
+    text-decoration: none;
+    color: black;
+    font-family: "Sora", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+}
+.container{
+    background-color: rgb(92, 92, 92); width: 100%; height: 300%;
+    display: inline-flex;
+    flex-direction: row;
+    height: 700px;
+
 }
 
 
-.btnSelect{
-    width: 100px;
-    padding: 300px;
-    text-align: left;
+
+.botones {
+    display: flex;
+    flex-direction: column; 
+    width: 10%;
+    
+
 }
+
+.btnSelect {
+    background-color: rgb(183, 15, 15);
+    color: white;
+    width: 100%;
+    border: 3px solid rgb(9, 3, 3);
+    border-collapse: collapse;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 16px;
+    height: 500px;
+    cursor: pointer;
+    font-family: "Sora", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+}
+
 
 .select{
-    padding: 15px;
-    text-align: center;
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+
+input{
+    background-color: rgb(170, 158, 143);
+}
+select{
+    background-color: rgb(170, 158, 143);
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;     
+    font-family: "Sora", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
 }

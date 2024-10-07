@@ -36,9 +36,9 @@ li {
     text-decoration: none;
     color: black;
     font-family: "Sora", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 800;
-  font-style: normal;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
 }
 .container{
     background-color: rgb(92, 92, 92); width: 100%; height: 300%;
@@ -80,24 +80,25 @@ li {
     padding: 5%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    margin: auto;
     
 }
 
 input{
-    background-color: rgb(170, 158, 143);
+    background-color: rgb(255, 254, 252);
+    height: 5vh;
+    width: 28vw;
 }
 select{
-    background-color: rgb(170, 158, 143);
+    background-color: rgb(234, 170, 91);
 }
 
 footer{
-    position: absolute;
     bottom: 0;
     width: 100%;
     height: 2.5rem;     
     font-family: "Sora", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 800;
-  font-style: normal;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
 }

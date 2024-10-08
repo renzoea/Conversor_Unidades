@@ -1,107 +1,134 @@
-@import url('https://fonts.googleapis.com/css2?family=Sixtyfour+Convergence&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sixtyfour+Convergence&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@100..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Sixtyfour+Convergence&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sixtyfour+Convergence&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@100..800&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@100..800&display=swap');
-*{margin: 0; padding: 0; box-sizing: border-box;}
-html{height: 100%; width: 100%;}
-body{background-color: rgb(65, 65, 65);}
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@100..800&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  height: 100%;
+  width: 100%;
+}
+body {
+  background-color: rgb(65, 65, 65);
+}
 nav {
-    display: flex;
-    justify-content: flex-end; /* Alinea el contenido del nav a la derecha */
-    
+  display: flex;
+  justify-content: flex-end; /* Alinea el contenido del nav a la derecha */
 }
-figure{
-    width: 10%;
-    height: 10%;
+figure {
+  width: 10%;
+  height: 10%;
 }
-.logo{
-    width: 80%;
-    height: 90%;
-} 
-
+.logo {
+  width: 80%;
+  height: 90%;
+}
 
 .lista {
-    display: flex; /* Cambiado de inline-flex a flex */
-    justify-content: flex-end; /* Alinea los elementos de la lista a la derecha */
-    padding: 0; /* Elimina el padding por defecto del ul */
-    margin: 0; /* Elimina el margin por defecto del ul */
+  display: flex; /* Cambiado de inline-flex a flex */
+  justify-content: flex-end; /* Alinea los elementos de la lista a la derecha */
+  padding: 0; /* Elimina el padding por defecto del ul */
+  margin: 0; /* Elimina el margin por defecto del ul */
 }
 
 li {
-    list-style: none;
-    padding: 10px;
-    text-align: right;
-    margin-right: 0; /* Asegura que no haya margen adicional a la derecha */
-    text-decoration: none;
-    color: black;
-    font-family: "Sora", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 800;
-    font-style: normal;
+  list-style: none;
+  padding: 10px;
+  text-align: right;
+  margin-right: 0; /* Asegura que no haya margen adicional a la derecha */
+  text-decoration: none;
+  color: black;
+  font-family: "Sora", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
 }
-.container{
-    background-color: rgb(92, 92, 92); width: 100%; height: 300%;
+.container {
+ 
+  display: inline-flex;
+  flex-direction: row;
+  height: 700px;
+}
+
+.parent {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  background-color: rgb(92, 92, 92);
+  width: 100%;
+  height: 800px;
+}
+
+.div1 {
+  grid-area: 1 / 1 / 6 / 2;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+.div2 {
+  grid-area: 1 / 2 / 3 / 6;
+  height: 20px;
+}
+.div3 {
+    grid-area: 3 / 2 / 4 / 6;
     display: inline-flex;
-    flex-direction: row;
-    height: 700px;
-
+    height: auto;
+    width: auto;
 }
-
-
-
-.botones {
-    display: flex;
-    flex-direction: column; 
-    width: 10%;
-    
-
+.div4 {
+  grid-area: 4 / 2 / 6 / 6;
+  height: 20px;
 }
 
 .btnSelect {
-    background-color: rgb(183, 15, 15);
-    color: white;
-    width: 100%;
-    border: 3px solid rgb(9, 3, 3);
-    border-collapse: collapse;
-    padding: 10px 20px;
-    text-decoration: none;
-    font-size: 16px;
-    height: 500px;
-    cursor: pointer;
-    font-family: "Sora", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 800;
-    font-style: normal;
+  background-color: rgb(183, 15, 15);
+  color: white;
+  width: auto;
+  border: 3px solid rgb(9, 3, 3);
+  border-collapse: collapse;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 16px;
+  height: 500px;
+  cursor: pointer;
+  font-family: "Sora", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
 }
-.btnSelect:hover{
-    background-color: rgb(150, 15, 15);
-}
-
-
-.select{
-    padding: 5%;
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-    
+.btnSelect:hover {
+  background-color: rgb(150, 15, 15);
 }
 
-input{
-    background-color: rgb(255, 254, 252);
-    height: 5vh;
-    width: 28vw;
-}
-select{
-    background-color: rgb(234, 170, 91);
+.select {
+  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
 }
 
-footer{
-    bottom: 0;
-    width: 100%;
-    height: 2.5rem;     
-    font-family: "Sora", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 800;
-    font-style: normal;
+input {
+  background-color: rgb(255, 254, 252);
+  height: 5vh;
+  width: 28vw;
+}
+select {
+  background-color: rgb(234, 170, 91);
+}
+
+footer {
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
+  font-family: "Sora", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
 }

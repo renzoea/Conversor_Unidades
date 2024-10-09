@@ -16,37 +16,51 @@ body {
   background-color: rgb(65, 65, 65);
 }
 nav {
-  display: flex;
-  justify-content: flex-end; /* Alinea el contenido del nav a la derecha */
+display: flex;
+width: 100%;
+  
 }
 figure {
-  width: 10%;
-  height: 10%;
+  justify-self: self-end;
+  width: 100%;
+  height: 100%;
 }
 .logo {
-  width: 80%;
-  height: 90%;
+  width: 24%;
+  height: 30%;
 }
 
 .lista {
-  display: flex; /* Cambiado de inline-flex a flex */
-  justify-content: flex-end; /* Alinea los elementos de la lista a la derecha */
-  padding: 0; /* Elimina el padding por defecto del ul */
-  margin: 0; /* Elimina el margin por defecto del ul */
+  display: flex;
+  justify-content: flex-end;
+  list-style: none;
+  padding: auto; /* Elimina el padding por defecto del ul */
+ margin-top: auto;
+  margin-right: 2.4vw;
+  margin-bottom: auto;
+  margin-left: auto;
+  width: 100%;
+  height: 100%;
 }
 
-li {
-  list-style: none;
-  padding: 10px;
-  text-align: right;
-  margin-right: 0; /* Asegura que no haya margen adicional a la derecha */
-  text-decoration: none;
-  color: black;
+
+li a {
+  text-decoration-line: none;
+  text-decoration-color: antiquewhite;
+  font-size: 27px;
+  margin:0 1.5vw;
+  color: black;list-style: none;
   font-family: "Sora", sans-serif;
   font-optical-sizing: auto;
   font-weight: 800;
   font-style: normal;
 }
+
+li a:hover {
+  color: rgb(255, 255, 255);
+  transition: 0.2s ease-out;
+}
+
 .container {
  
   display: inline-flex;
@@ -56,7 +70,7 @@ li {
 
 .parent {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(9, 1fr);
   grid-template-rows: repeat(5, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
@@ -70,27 +84,33 @@ li {
   height: auto;
   display: flex;
   flex-direction: column;
-  width: 60%;
-}
-.div2 {
-  grid-area: 1 / 2 / 3 / 6;
-  height: auto;
   width: auto;
 }
+.div2 {
+  grid-area: 1 / 2 / 3 / 10;
+  height: auto;
+  width: auto;
+  
+}
 .div3 {
-    grid-area: 3 / 2 / 4 / 6;
-    display: inline-flex;
-    height: auto;
-    width: auto;
+    grid-area: 3 / 2 / 4 / 10;
+  
+}
+.conversor {
+  display: inline-flex;
+  height: 100%;
+  width: 100%;margin: auto;
+  
 }
 .div4 {
-    grid-area: 4 / 2 / 6 / 6;
+    grid-area: 4 / 2 / 6 / 10;
     height: auto;
     width: auto;
+   
 }
 
 .btnSelect {
-  background-color: rgb(183, 15, 15);
+  background-color: rgb(40, 38, 38);
   color: white;
   width: auto;
   border: 3px solid rgb(9, 3, 3);
@@ -106,27 +126,48 @@ li {
   font-style: normal;
 }
 .btnSelect:hover {
-  background-color: rgb(150, 15, 15);
+  background-color: rgb(69, 66, 66);
+  transition: 0.2s ease-out;
+
 }
 
 .select {
   padding: 5%;
   display: flex;
   flex-direction: column;
+  width: auto;
   margin: auto;
 }
 
 input {
   background-color: rgb(255, 254, 252);
   height: 5vh;
+  border: 3px solid rgb(42, 41, 41);
+  font-size: large;
   width: 28vw;
+  border-bottom: 0px solid rgb(0, 0, 0);
+  border-top-left-radius:15px ;
+  border-top-right-radius:15px ;
 }
 select {
   background-color: rgb(234, 170, 91);
+  border: 3px solid rgb(42, 41, 41);
+  border-bottom-left-radius:15px ;
+  border-bottom-right-radius:15px ;
+  text-align: center;
+  width: auto;
+  font-size: large;
+  height: 4vh;
 }
-
+.hrs {
+ margin: auto;
+  width: 90%;
+  height: 2px;
+  border: 1px solid rgb(51, 49, 49);
+  background-color: rgb(11, 10, 10);
+}
 footer {
-  bottom: 0;
+
   width: 100%;
   height: 2.5rem;
   font-family: "Sora", sans-serif;

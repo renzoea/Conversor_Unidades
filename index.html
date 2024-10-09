@@ -1,69 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Conversor de Unidades</title>
-    <link rel="stylesheet" href="css/stilos.css" type="text/css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/stilos.css" type="text/css" />
+  </head>
+  <body>
     <header>
-        <nav>
-            <figure >
-                <a href="index.html">
-                <img class="logo" src="img/logo.png" alt="Logo"></a>
-            </figure>
-            
-          
-                <ul class="lista">
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="tablas.html">Tablas</a></li>
-                    <li><a href="acercade.html">Acerca de</a></li>
-                </ul>
-            
-            
-        </nav>
+      <nav>
+        <figure>
+          <a href="index.html">
+            <img class="logo" src="img/logo.png" alt="Logo"
+          /></a>
+        </figure>
+
+        <ul class="lista">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="tablas.html">Tablas</a></li>
+          <li><a href="acercade.html">Acerca de</a></li>
+        </ul>
+      </nav>
     </header>
     <main class="parent">
-        
-        <div class="div1 botones">
-    
-            <button class="btnSelect" id="temperatura">Temperatura</button>
-            <button class="btnSelect" id="frecuencia">Frecuencia</button>
-            <button class="btnSelect" id="longitud">Longitud</button>
-            <button class="btnSelect" id="tiempo">Tiempo</button>
-            <button class="btnSelect" id="energia">Energia</button>
-
-        </div>
-        <div class="div2"></div>
-        <div class="div3">
+      <div class="div1 botones">
+        <button class="btnSelect" id="temperatura">Temperatura</button>
+        <button class="btnSelect" id="frecuencia">Frecuencia</button>
+        <button class="btnSelect" id="longitud">Longitud</button>
+        <button class="btnSelect" id="tiempo">Tiempo</button>
+        <button class="btnSelect" id="energia">Energia</button>
+      </div>
+      <div class="div2"></div>
+ 
+      <div class="div3"><hr class="hrs">
+        <div class="conversor">
         <div class="select">
-            <input type="number" id="inp1">
-            <select name="Selecion" id="select1">
-                <option value="">Seleccione una unidad</option>
-                <option value="">1</option>
-                <option value="">2</option>
-                <option value="">3</option>
-            </select>
+          <input type="number" id="inp1" />
+          <select name="Selecion" id="select1">
+            <option value="">Seleccione una unidad</option>
+            <option value="">1</option>
+            <option value="">2</option>
+            <option value="">3</option>
+          </select>
         </div>
-        <svg  xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M160-280v-120h640v120H160Zm0-280v-120h640v120H160Z"/></svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 -960 960 960"
+          width="24px"
+          fill="#000000"
+        >
+          <path d="M160-280v-120h640v120H160Zm0-280v-120h640v120H160Z" />
+        </svg>
         <div class="select">
-            <input type="number" id="inp2">
-            <select name="" id="select2" >
-                <option value="">Seleccione una unidad</option>
-                <option value="">1</option>
-                <option value="">2</option>
-                <option value="">3</option>
-            </select>
+          <input type="number" id="inp2" />
+          <select name="" id="select2">
+            <option value="">Seleccione una unidad</option>
+            <option value="">1</option>
+            <option value="">2</option>
+            <option value="">3</option>
+          </select>
         </div></div>
-        <div class="div4"></div>
+      </div>
+      
+      <div class="div4"><hr class="hrs"></div>
     </main>
     <footer>
-        <script src="js/app.js"></script>
-        
-        <p>Contacto</p>
-        
-        
+      <script src="js/app.js"></script>
+
+      <p>Contacto</p>
     </footer>
-</body>
+  </body>
 </html>

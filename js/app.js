@@ -14,21 +14,44 @@ let lon = ["Metro","Kilometro","Cetrimetro","Milimitro","Milla","Yarda","Pie","P
 let timp = ["Micro segundo","Mili Segundo","Segundo", "Minuto", "Hora", "Dia", "Semana","Mes","Año"]
 
 
-temperatura.addEventListener("click", function(){
+
+function cambiarUnidad(array) {
     select1.innerHTML = '<option value="">Seleccione una unidad</option>';
     select2.innerHTML = '<option value="">Seleccione una unidad</option>'
-    for(let x=0; x<tmp.length; x++){
+    for(let x=0; x<array.length; x++){
         let dat = document.createElement('option');
-        dat.value = tmp[x];
-        dat.textContent = tmp[x];
+        dat.value = array[x];
+        dat.textContent = array[x];
         select1.appendChild(dat)
-    }for(let x=0; x<tmp.length; x++){
+    }for(let x=0; x<array.length; x++){
         let dat = document.createElement('option');
-        dat.value = tmp[x];
-        dat.textContent = tmp[x];
+        dat.value = array[x];
+        dat.textContent = array[x];
         select2.appendChild(dat);
     }
-    // if ((select1.value='celcius') && (select2.value='Kelvin')) {
+}
+
+
+temperatura.addEventListener("click", function(){
+    cambiarUnidad(tmp);}
+    );
+energia.addEventListener("click", function(){
+    cambiarUnidad(ener);}
+    );
+longitud.addEventListener("click", function(){
+    cambiarUnidad(lon);}
+    );
+frecuencia.addEventListener("click", function(){
+    cambiarUnidad(frec);}
+    );
+tiempo.addEventListener("click", function(){
+    cambiarUnidad(timp);}
+    );
+
+
+
+
+  // if ((select1.value='celcius') && (select2.value='Kelvin')) {
     //     inp1.onkeypress = function(){
     //         let num=0;
     //         num=inp1 + 273.15;
@@ -36,7 +59,7 @@ temperatura.addEventListener("click", function(){
     //         inp2.innerHTML=num;
     //     }
     // }
-});
+
 inp1.addEventListener('input', function() {
     if (select1.value === 'celcius' && select2.value === 'Kelvin' ) {
         const celsius = parseFloat(inp1.value);
@@ -104,68 +127,4 @@ inp1.addEventListener('input', function() {
             }
         }
     });
-
-energia.addEventListener("click", function(){
-    select1.innerHTML = '<option value="">Seleccione una unidad</option>';
-    select2.innerHTML = '<option value="">Seleccione una unidad</option>'
-    for(let x=0; x<ener.length; x++){
-        let dat = document.createElement('option');
-        dat.value = ener[x];
-        dat.textContent = ener[x];
-        select1.appendChild(dat)
-    }for(let x=0; x<ener.length; x++){
-        let dat = document.createElement('option');
-        dat.value = ener[x];
-        dat.textContent = ener[x];
-        select2.appendChild(dat);
-    }
-});
-
-frecuencia.addEventListener("click", function(){
-    select1.innerHTML = '<option value="">Seleccione una unidad</option>';
-    select2.innerHTML = '<option value="">Seleccione una unidad</option>'
-    for(let x=0; x<frec.length; x++){
-        let dat = document.createElement('option');
-        dat.value = frec[x];
-        dat.textContent = frec[x];
-        select1.appendChild(dat)
-    }for(let x=0; x<tmp.length; x++){
-        let dat = document.createElement('option');
-        dat.value = tmp[x];
-        dat.textContent = tmp[x];
-        select2.appendChild(dat);
-    }
-});
-
-tiempo.addEventListener("click", function(){
-    select1.innerHTML = '<option value="">Seleccione una unidad</option>';
-    select2.innerHTML = '<option value="">Seleccione una unidad</option>'
-    for(let x=0; x<timp.length; x++){
-        let dat = document.createElement('option');
-        dat.value = timp[x];
-        dat.textContent = timp[x];
-        select1.appendChild(dat)
-    }for(let x=0; x<timp.length; x++){
-        let dat = document.createElement('option');
-        dat.value = timp[x];
-        dat.textContent = timp[x];
-        select2.appendChild(dat);
-    }
-});
-
-longitud.addEventListener("click", function(){
-    select1.innerHTML = '<option value="">Seleccione una unidad</option>';
-    select2.innerHTML = '<option value="">Seleccione una unidad</option>'
-    for(let x=0; x<lon.length; x++){
-        let dat = document.createElement('option');
-        dat.value = lon[x];
-        dat.textContent = lon[x];
-        select1.appendChild(dat)
-    }for(let x=0; x<lon.length; x++){
-        let dat = document.createElement('option');
-        dat.value = lon[x];
-        dat.textContent = lon[x];
-        select2.appendChild(dat);
-    }
-    
-});
+    // else if (select1.value === 'Fahrenheit' && select2.value === 'Fahrenheit' ) {

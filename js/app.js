@@ -7,6 +7,8 @@ let select1 = document.getElementById("select1");
 let select2 = document.getElementById("select2");
 let inp1 = document.getElementById("inp1");
 let inp2 = document.getElementById("inp2");
+let th = document.getElementById("th")
+
 let tmp = ["Celcius","Kelvin","Fahrenheit",];
 let ener = ["kilo Whats","Joule","Kilo Joule","Caloria-gramo","Kilo Caloria","Volt Hora","Kilo Volt Hora"]
 let frec = ["Herz","Kiloherz","Megaherz","Gigaherz"]
@@ -30,22 +32,41 @@ function cambiarUnidad(array) {
         select2.appendChild(dat);
     }
 }
+//Rellenar tablas 
+function llenarTabla(){
+    let tbody = document.getElementById('tabla').querySelector('tbody');
+    tbody.innerHTML = '';
+    encabezado.textContent = 'Unidades'; // Encabezado genérico
+
+    array.forEach(unit => {
+        let fila = document.createElement('tr');
+        let celda = document.createElement('td');
+        celda.textContent = unit;
+        fila.appendChild(celda);
+        tbody.appendChild(fila);
+    });
+} 
 
 
 temperatura.addEventListener("click", function(){
-    cambiarUnidad(tmp);}
+    cambiarUnidad(tmp);
+    llenarTabla(tmp);}
     );
 energia.addEventListener("click", function(){
-    cambiarUnidad(ener);}
+    cambiarUnidad(ener);
+    llenarTabla(ener);}
     );
 longitud.addEventListener("click", function(){
-    cambiarUnidad(lon);}
+    cambiarUnidad(lon);
+    llenarTabla(lon);}
     );
 frecuencia.addEventListener("click", function(){
-    cambiarUnidad(frec);}
+    cambiarUnidad(frec);
+    llenarTabla(frec);}
     );
 tiempo.addEventListener("click", function(){
-    cambiarUnidad(timp);}
+    cambiarUnidad(timp);
+    llenarTabla(timp);}
     );
 
 
@@ -128,4 +149,42 @@ inp1.addEventListener('input', function() {
         }
     });
     // else if (select1.value === 'Fahrenheit' && select2.value === 'Fahrenheit' ) {
+    //Rellenar tablas 
+    function llenarTabla(){
+        let tbody = document.getElementById('tabla').querySelector('tbody');
+        let encabezado = document.getElementById('tablaEncabezado');
+        tbody.innerHTML='';
+        let dato;
+        switch (categoria) {
+            case 'tmp':
+                dato = tmp;
+                encabezado.textContent = 'Unidades de Temperatura';
+                break;
+            case 'ener':
+                dato = ener;
+                encabezado.textContent = 'Unidades de Energía';
+                break;
+            case 'frec':
+                dato = frec;
+                encabezado.textContent = 'Unidades de Frecuencia';
+                break;
+            case 'lon':
+                dato = lon;
+                encabezado.textContent = 'Unidades de Longitud';
+                break;
+            case 'timp':
+                dato = timp;
+                encabezado.textContent = 'Unidades de Tiempo';
+                break;
+            default:
+                return; // Salir si no hay categoría válida
+        }
+        datos.forEach(dato => {
+            let fila = document.createElement('tr');
+            let celda = document.createElement('td');
+            celda.textContent = dato;
+            fila.appendChild(celda);
+            tbody.appendChild(fila);
+        });
+} 
 

@@ -61,7 +61,7 @@ const conversiones = {
         'Volt Hora': (val) => val / 860.421, // 1 Cal/g = 1/860.421 Vh
         'Kilo Volt Hora': (val) => val / 860421, // 1 Cal/g = 1/860421 kWh
         'Caloria-gramo': (val) => val // Conversión a sí mismo
-    },
+    }, 
     'Kilo Caloria': {
         'kilo Whats': (val) => val / 860.421, // 1 kcal = 1/860.421 kW
         'Joule': (val) => val * 4184, // 1 kcal = 4184 Joules
@@ -283,7 +283,7 @@ const conversiones = {
 let tmp = ["Celcius","Kelvin","Fahrenheit",];
 let ener = ["kilo Whats","Joule","Kilo Joule","Caloria-gramo","Kilo Caloria","Volt Hora","Kilo Volt Hora"]
 let frec = ["Herz","Kiloherz","Megaherz","Gigaherz"]
-let lon = ["Metro","Kilometro","Cetrimetro","Milimitro","Milla","Yarda","Pie","Pulgada"]
+let lon = ["Metro","Kilometro","Centimetro","Milimetro","Milla","Yarda","Pie","Pulgada"]
 let timp = ["Micro segundo","Mili Segundo","Segundo", "Minuto", "Hora", "Dia", "Semana","Mes","Año"]
 
 
@@ -303,7 +303,7 @@ function cambiarUnidad(array) {
         select2.appendChild(dat);
     }
 }
-// //Rellenar tablas 
+//Rellenar tablas 
 // function llenarTabla(){
 //     let tbody = document.getElementById('tabla').querySelector('tbody');
 //     tbody.innerHTML = '';
@@ -377,7 +377,7 @@ function conversion(unidad1,unidad2,valor,conversiones) {
     if (conversiones[unidad1] && conversiones[unidad1][unidad2]) {
         const result = conversiones[unidad1][unidad2](valor);
         console.log(conversiones[unidad1][unidad2](valor))
-        inp2.value = result.toFixed(2); 
+        inp2.value = result.toFixed(6); 
     } else {
         console.log("no funciona")
         inp2.value = ''; // Limpia la entrada si no es un número válido o no hay conversión disponible

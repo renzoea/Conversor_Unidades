@@ -126,10 +126,11 @@ li a:hover {
   font-style: normal;
 }
 .btnSelect:hover {
-  background-color: rgb(69, 66, 66);
+  background-color: rgb(69, 68, 66);
   transition: 0.2s ease-out;
 
 }
+
 
 .select {
   padding: 5%;
@@ -143,8 +144,11 @@ input {
   background-color: rgb(255, 254, 253);
   height: 5vh;
   border: 3px solid rgb(42, 41, 41);
-  font-size: large;
-  width: 28vw;
+  font-size: 1.5vw;
+  width: 20vw;
+  font-weight: 450;
+  text-align: end;
+  padding-right: 5px;
   border-bottom: 0px solid rgb(0, 0, 0);
   border-top-left-radius:15px ;
   border-top-right-radius:15px ;
@@ -155,7 +159,7 @@ select {
   border-bottom-left-radius:15px ;
   border-bottom-right-radius:15px ;
   text-align: center;
-  width: auto;
+  width: 20vw;
   font-size: large;
   height: 4vh;
 }

@@ -7,7 +7,7 @@ let botonera= document.getElementById("botonera");
 let lista = document.getElementById("lista");
 let cerrar = document.getElementById("cerrar");
 let div1 = document.getElementById("div1");
-
+let logo= document.getElementById("logo");
 let botones = [temperatura,energia,longitud,frecuencia,tiempo];
 let select1 = document.getElementById("select1");
 let select2 = document.getElementById("select2");
@@ -301,8 +301,8 @@ let timp = ["Micro segundo","Mili Segundo","Segundo", "Minuto", "Hora", "Dia", "
 
 
 function cambiarUnidad(array) {
-    select1.innerHTML = '<option value="">Seleccione una unidad</option>';
-    select2.innerHTML = '<option value="">Seleccione una unidad</option>';
+    select1.innerHTML = '<option value="">Seleccione aqui</option>';
+    select2.innerHTML = '<option value="">Seleccione aqui</option>';
     for(let x=0; x<array.length; x++){
         let dat = document.createElement('option');
         dat.className = 'option';
@@ -382,49 +382,53 @@ botonera.addEventListener("click", function(){
         div1.style.display = 'flex';
         botonera.style.visibility = 'hidden';
         // botonera.style.display= 'none';
-        lista.style.display = 'block';
+        logo.style.width = '100%';
+        lista.style.display = 'flex';
     }
 )
 
 cerrar.addEventListener("click", function(){
     div1.style.display = 'none';
     botonera.style.visibility = 'visible';
+    logo.style.width = '';
     lista.style.display = 'none';
 })
 
 temperatura.addEventListener("click", function(){
-    cambiarUnidad(tmp);
+  
+    cambiarUnidad(tmp);  
     // llenarTabla(tmp);
     colorUnidad(temperatura);
-    llenarTabla(conversiones,tmp);
-    
- 
+    llenarTabla(conversiones,tmp);tablas.style.margin = '';
+  
 
     }
     );
 energia.addEventListener("click", function(){
     cambiarUnidad(ener);
     llenarTabla(conversiones,ener);
-    colorUnidad(energia);
-  
+    colorUnidad(energia);tablas.style.margin = '';
+
     }
     );
 longitud.addEventListener("click", function(){
     cambiarUnidad(lon);
     llenarTabla(conversiones,lon);
-    colorUnidad(longitud); 
+    colorUnidad(longitud);tablas.style.margin = '';
 }
     );
 frecuencia.addEventListener("click", function(){
     cambiarUnidad(frec);
     llenarTabla(conversiones,frec);
     colorUnidad(frecuencia); tablas.style.gridArea = '';
+
+    tablas.style.margin = '0px';
 }
     );
 tiempo.addEventListener("click", function(){
     cambiarUnidad(timp);
     llenarTabla(conversiones,timp);
-    colorUnidad(tiempo);
+    colorUnidad(tiempo); tablas.style.margin = '';
 }
     );
 

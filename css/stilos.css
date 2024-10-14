@@ -3,28 +3,33 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@100..800&display=swap");
 
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@100..800&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 html {
   height: 100%;
   width: 100%;
 }
+
 body {
   background-color: rgb(65, 65, 65);
 }
+
 nav {
-display: flex;
-width: 100%;
-  
+  display: flex;
+  width: 100%;
 }
+
 figure {
   justify-self: self-end;
   width: 100%;
   height: 100%;
 }
+
 .logo {
   width: 24%;
   height: 30%;
@@ -34,22 +39,19 @@ figure {
   display: flex;
   justify-content: flex-end;
   list-style: none;
-  padding: auto; /* Elimina el padding por defecto del ul */
- margin-top: auto;
-  margin-right: 2.4vw;
-  margin-bottom: auto;
-  margin-left: auto;
+  padding: auto;
+  margin: auto 2.4vw;
   width: 100%;
   height: 100%;
 }
-
 
 li a {
   text-decoration-line: none;
   text-decoration-color: antiquewhite;
   font-size: 27px;
-  margin:0 1.5vw;
-  color: black;list-style: none;
+  margin: 0 1.5vw;
+  color: black;
+  list-style: none;
   font-family: "Sora", sans-serif;
   font-optical-sizing: auto;
   font-weight: 800;
@@ -62,7 +64,6 @@ li a:hover {
 }
 
 .container {
- 
   display: inline-flex;
   flex-direction: row;
   height: 700px;
@@ -76,44 +77,72 @@ li a:hover {
   grid-row-gap: 0px;
   background-color: #676666d4;
   width: 100%;
-  height: 800px;
+  height: 1000px;
 }
 
 .div1 {
-  grid-area: 1 / 1 / 6 / 2;
+  grid-area: 1 / 1 / 11 / 2;
   height: auto;
   display: flex;
   flex-direction: column;
   width: auto;
 }
+
+.cerrar-btn {
+  display: none;
+}
+
+
 .div2 {
-  grid-area: 1 / 2 / 3 / 10;
-  height: auto;
+  grid-area: 1 / 2 / 2 / 10;
+  height: 100%;
   width: auto;
-  
 }
+
 .div3 {
-    grid-area: 3 / 2 / 4 / 10;
-  
+  grid-area: 2 / 2 / 3 / 10;
 }
+
 .conversor {
   display: inline-flex;
-  height: 100%;
-  width: 100%;margin: auto;
-  
+  height: 30vh;
+  width: 85vw;
+  margin: auto;
 }
+
 .div4 {
-    grid-area: 4 / 2 / 6 / 10;
-    height: auto;
-    width: auto;
-   
+  grid-area: 3 / 2 / 6 / 10;
+  width: 90%;
+  display: grid;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px auto;
+  border-radius: 10px;
+  grid-template-columns: repeat(4, 3fr);
+}
+
+table {
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 5px;
+  justify-content: space-between;
+  margin: auto;
+  border-spacing: 1px;
+}
+
+.encabezado {
+  background-color: rgb(235, 152, 49);
+}
+
+td {
+  background-color: white;
+  padding: 4px 10px;
 }
 
 .btnSelect {
   background-color: rgb(40, 38, 38);
   color: white;
   width: auto;
-  border: 3px solid rgb(9, 3, 3);
+  border: 2px solid rgb(9, 3, 3);
   border-collapse: collapse;
   padding: 10px 20px;
   text-decoration: none;
@@ -125,12 +154,11 @@ li a:hover {
   font-weight: 600;
   font-style: normal;
 }
+
 .btnSelect:hover {
   background-color: rgb(69, 68, 66);
   transition: 0.2s ease-out;
-
 }
-
 
 .select {
   padding: 5%;
@@ -138,6 +166,10 @@ li a:hover {
   flex-direction: column;
   width: auto;
   margin: auto;
+}
+
+.br {
+  display: none;
 }
 
 input {
@@ -150,32 +182,171 @@ input {
   text-align: end;
   padding-right: 5px;
   border-bottom: 0px solid rgb(0, 0, 0);
-  border-top-left-radius:15px ;
-  border-top-right-radius:15px ;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+hamburguesa {
+  width: 20px;
+  height: 20px;
 }
 select {
   background-color: rgb(235, 152, 49);
   border: 3px solid rgb(42, 41, 41);
-  border-bottom-left-radius:15px ;
-  border-bottom-right-radius:15px ;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
   text-align: center;
   width: 20vw;
   font-size: large;
   height: 4vh;
 }
+
+select:focus {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.abrir-btn {
+display: none;
+}
+
 .hrs {
- margin: auto;
+  margin: auto;
   width: 90%;
   height: 2px;
   border: 1px solid rgb(51, 49, 49);
   background-color: rgb(11, 10, 10);
 }
-footer {
 
+footer {
   width: 100%;
   height: 2.5rem;
   font-family: "Sora", sans-serif;
   font-optical-sizing: auto;
   font-weight: 800;
   font-style: normal;
+}
+
+@media (max-width: 1024px) {
+  .logo {
+    width: 30%;
+    height: auto;
+  }
+
+  .lista {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .abrir-btn {
+    display: block;
+    width: 100px;
+    height: 100px;
+    border: 2px solid rgb(9, 3, 3);
+    background-color: rgb(51, 50, 50);
+    color: white;
+    border-radius: 10px;
+    margin: auto;
+    margin-right: 5px;
+    justify-content: end;
+    position: relative;
+
+  }
+  .cerrar-btn {
+    display: block;
+    background-color: rgb(65, 65, 65);
+    width: 100%;
+    border: 0px;
+    height: 100%;
+    color: white;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: start;
+    position: relative;
+    padding-right: 20px; /* Added padding to separate from the right side */
+  }
+}
+
+@media (max-width: 768px) {
+  .conversor {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+  }
+
+  .div1 {
+    grid-area: 1 / 7 / 11 / 10;
+    height: 100%;
+    width: 100%;
+    margin: 0%;
+    display: none;
+    align-self: end;
+    position: relative;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(65, 65, 65);
+    /* display: none; */
+
+  }
+
+  .lista {
+    display: none;
+    text-align: center;
+    margin: auto;
+    margin-top: 3px;
+    font-size: 20px;
+  }
+
+
+  .lista li{  height: 5vh;padding: auto; margin : auto;  }
+
+  .lista li a {
+    font-size: 20px;
+    color: white;
+    font-family: "Sora", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    
+  }
+
+  input {
+    width: 100%;
+    font-size: 3vw;
+  }
+
+  select {
+    width: 100%;
+    margin: auto;
+  }
+
+  .btnSelect {
+    height: 11%;
+    background-color: rgb(65, 65, 65);
+    border: 1px solid rgb(9, 3, 3);
+    position: relative
+  }
+
+  .div4 {
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 columnas en pantallas medianas */
+  }
+
+  svg {
+    margin: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .div4 {
+    grid-template-columns: repeat(1, 1fr);
+    /* 1 columna en pantallas pequeñas */
+  }
+
+  svg {
+    margin: auto;
+  }
 }

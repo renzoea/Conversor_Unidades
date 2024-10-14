@@ -7,6 +7,7 @@ let botonera= document.getElementById("botonera");
 let lista = document.getElementById("lista");
 let cerrar = document.getElementById("cerrar");
 let div1 = document.getElementById("div1");
+
 let botones = [temperatura,energia,longitud,frecuencia,tiempo];
 let select1 = document.getElementById("select1");
 let select2 = document.getElementById("select2");
@@ -357,6 +358,9 @@ function llenarTabla(conversiones,array){
  }
 
 
+
+
+
 function colorUnidad(htmlelement){
     for(let x = 0; x < botones.length; x++){
         if(htmlelement == botones[x]){
@@ -393,24 +397,28 @@ temperatura.addEventListener("click", function(){
     // llenarTabla(tmp);
     colorUnidad(temperatura);
     llenarTabla(conversiones,tmp);
+    
+ 
+
     }
     );
 energia.addEventListener("click", function(){
     cambiarUnidad(ener);
     llenarTabla(conversiones,ener);
     colorUnidad(energia);
+  
     }
     );
 longitud.addEventListener("click", function(){
     cambiarUnidad(lon);
     llenarTabla(conversiones,lon);
-    colorUnidad(longitud);
+    colorUnidad(longitud); 
 }
     );
 frecuencia.addEventListener("click", function(){
     cambiarUnidad(frec);
     llenarTabla(conversiones,frec);
-    colorUnidad(frecuencia);
+    colorUnidad(frecuencia); tablas.style.gridArea = '';
 }
     );
 tiempo.addEventListener("click", function(){
@@ -430,16 +438,7 @@ function conversion(unidad1,unidad2,valor,conversiones) {
         let result = conversiones[unidad1][unidad2](valor);
         console.log(conversiones[unidad1][unidad2](valor))
 
-        // let val = valor.toString();
-        // let dec = val.indexOf('.');  // Cambiado de valorStr a val
-
-        // let numDecimals = 0;
-        // if (dec !== -1) {
-        //     numDecimals = val.length - dec - 1;
-        // }
-
-        // console.log(numDecimals);
-        // inp2.value = result.toFixed(numDecimals);
+        
         inp2.value = result.toFixed(6);
     } else {
         console.log("no funciona")

@@ -3,19 +3,7 @@ import React from "react";
 const AcercaDe = () => {
     return (
         <div>
-            <header>
-                <nav>
-                    <figure>
-                        <a href="index.html">
-                            <img className="logo" src="img/logo.png" alt="Logo" />
-                        </a>
-                    </figure>
-                    <ul className="lista">
-                        <li><a href="index.html">Inicio</a></li>
-                        <li><a href="acercade.html">Acerca de</a></li>
-                    </ul>
-                </nav>
-            </header>
+            
             <main style={{ backgroundColor: "rgb(122, 120, 120)", marginBottom: "100px" }}>
                 <p>
                     La página Convertodo se encarga en la ayuda de estudiante, profesores, o cualquier persona que esté buscando un conversor

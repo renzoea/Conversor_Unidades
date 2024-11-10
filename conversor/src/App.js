@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import Conversor from "./components/Conversor";
 
+import React, { useRef } from 'react';
+
 import "./App.css";
 import AcercaDe from "./components/acercade";
 function App() {
@@ -10,7 +12,7 @@ function App() {
         <nav>
           <figure>
             <a href="index.html">
-              <img class="logo" id="logo" src="img/logo.png" alt="Logo" />
+              <img class="logo" id="logo" alt="Logo" />
             </a>
           </figure>
 

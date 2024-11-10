@@ -13,6 +13,12 @@ let select1 = document.getElementById("select1");
 let select2 = document.getElementById("select2");
 let inp1 = document.getElementById("inp1");
 let inp2 = document.getElementById("inp2");
+
+let tmp = ["Celcius","Kelvin","Fahrenheit",];
+let ener = ["kilo Whats","Joule","Kilo Joule","Caloria-gramo","Kilo Caloria","Volt Hora","Kilo Volt Hora"]
+let frec = ["Herz","Kiloherz","Megaherz","Gigaherz"]
+let lon = ["Metro","Kilometro","Centimetro","Milimetro","Milla","Yarda","Pie","Pulgada"]
+let timp = ["Micro segundo","Mili Segundo","Segundo", "Minuto", "Hora", "Dia", "Semana","Mes","Año"];
 let conversiones = {
     'Celcius': {
         'Celcius': (X) => X,
@@ -291,13 +297,7 @@ let conversiones = {
                     'Segundo': (X) => X * 2.628e6, // 1 mes = 2,628,000 segundos
                     'Minuto': (X) => X * 43800 // 1 mes
 
-        }}
-let tmp = ["Celcius","Kelvin","Fahrenheit",];
-let ener = ["kilo Whats","Joule","Kilo Joule","Caloria-gramo","Kilo Caloria","Volt Hora","Kilo Volt Hora"]
-let frec = ["Herz","Kiloherz","Megaherz","Gigaherz"]
-let lon = ["Metro","Kilometro","Centimetro","Milimetro","Milla","Yarda","Pie","Pulgada"]
-let timp = ["Micro segundo","Mili Segundo","Segundo", "Minuto", "Hora", "Dia", "Semana","Mes","Año"]
-
+        }};
 
 
 function cambiarUnidad(array) {

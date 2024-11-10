@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useRef  } from 'react';
+import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+
 
 const Conversor = () => {
   const [unidad1, setUnidad1] = useState('');
   const [unidad2, setUnidad2] = useState('');
-  const [valor, setValor] = useState('');
-  const [resultado, setResultado] = useState('');
+  const [valor, setValor] = useState(0);
+  const [resultado, setResultado] = useState(null);
+  const [options, setOptions] = useState([]);
   const [categoria, setCategoria] = useState('');
+  const tmp = ["Celcius", "Kelvin", "Fahrenheit"];
+  const ener = ["kilo Whats", "Joule", "Kilo Joule", "Caloria-gramo", "Kilo Caloria", "Volt Hora", "Kilo Volt Hora"];
+  const frec = ["Herz", "Kiloherz", "Megaherz", "Gigaherz"];
+  const lon = ["Metro", "Kilometro", "Centimetro", "Milimetro", "Milla", "Yarda", "Pie", "Pulgada"];
+  const timp = ["Micro segundo", "Mili Segundo", "Segundo", "Minuto", "Hora", "Dia", "Semana", "Mes", "Año"];
 
   // Objeto de conversiones
   let conversiones = {
@@ -288,6 +296,10 @@ const Conversor = () => {
 
         }}
 
+        const cambiarUnidad = (array) => {
+          setOptions(array);
+        };
+
   const handleConvertir = () => {
     if (conversiones[unidad1] && conversiones[unidad1][unidad2]) {
       const result = conversiones[unidad1][unidad2](parseFloat(valor));
@@ -296,14 +308,17 @@ const Conversor = () => {
       setResultado('Conversión no disponible');
     }
   };
-
+  // logica select
   const handleCategoriaChange = (categoria) => {
     setCategoria(categoria);
     switch (categoria) {
-      case 'temperatura': setUnidad1('Celcius'); setUnidad2('Kelvin'); break;
-      // Añadir más categorías según sea necesario...
-      default: setUnidad1(''); setUnidad2('');
-    }
+      case 'temperatura': var Opciones=tmp; break;
+      case 'frecuencia' : var Opciones=frec; break;
+      case 'longitud': var Opciones=lon; break;
+      case 'tiempo' : var Opciones=timp; break;
+      case 'energia': var Opciones=ener; break;}
+      cambiarUnidad(Opciones);
+    
   };
 
   return (
@@ -320,7 +335,7 @@ const Conversor = () => {
         <h1>Conversor de Unidades</h1>
         <p>
           Bienvenido a nuestro conversor de unidades, selecciona una categoria
-          para comenzar a convertir tus unidades. Si deseas saber más sobre nosotros, revisa la sección <a href="acercade.html">Acerca de</a> para más información.
+          para comenzar a convertir tus unidades. Si deseas saber más sobre nosotros, revisa la sección <Link to="/acercade">Acerca de</Link> para más información.
         </p>
       </div>
 
@@ -329,14 +344,11 @@ const Conversor = () => {
         <div className="conversor">
           <div className="select">
             <input type="number" value={valor} onChange={(e) => setValor(e.target.value)} />
-            <select value={unidad1} onChange={(e) => setUnidad1(e.target.value)}>
-              <option value="">Seleccione aquí</option>
-              {/* Opciones según la categoría seleccionada */}
-              {categoria === 'temperatura' && <>
-                <option value="Celcius">Celsius</option>
-                <option value="Kelvin">Kelvin</option>
-                <option value="Fahrenheit">Fahrenheit</option>
-              </>}
+            <select onChange={(e) => setUnidad1(e.target.value)} value={unidad1}>
+            <option value="">Seleccione aquí</option>
+            {options.map((opcion, index) => (
+          <option key={`select1-${index}`} value={opcion}>{opcion}</option>
+        ))}
             </select>
           </div>
           
@@ -348,11 +360,9 @@ const Conversor = () => {
             <input type="number" value={resultado} readOnly />
             <select value={unidad2} onChange={(e) => setUnidad2(e.target.value)}>
               <option value="">Seleccione aquí</option>
-              {categoria === 'temperatura' && <>
-                <option value="Celcius">Celsius</option>
-                <option value="Kelvin">Kelvin</option>
-                <option value="Fahrenheit">Fahrenheit</option>
-              </>}
+              {options.map((opcion, index) => (
+          <option key={`select2-${index}`} value={opcion}>{opcion}</option>
+        ))}
             </select>
           </div>
         </div>

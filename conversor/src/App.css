@@ -65,8 +65,13 @@ html {
   background-color: rgb(65, 65, 65);
 }
 
-body {
+body{
   background-color: rgb(65, 65, 65);
+}
+
+.main-contacto{
+  background-color: rgb(84, 84, 84);
+  height: 500px;
 }
 
 nav {
@@ -324,6 +329,79 @@ select:focus {
   font-weight: 800;
   font-style: normal;
 }
+.contact-container {
+  display: flex;
+  background-color: rgb(84, 84, 84);
+  justify-content: space-around;
+  border-radius: 10px;
+  width: 50%;
+  margin:  auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.p-contacto {
+  font-size: 20px;
+  color: rgb(0, 0, 0);
+}
+
+.contact-info {
+  flex: 1;
+  margin-right: 20px;
+  text-align: left;
+}
+
+.form-container {
+  flex: 2;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.form-textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  min-height: 100px;
+}
+
+.form-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: rgb(235, 152, 49);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.confirmation-message {
+  margin-top: 20px;
+  font-size: 16px;
+  color: green;
+}
+
 
 @media (max-width: 1024px) {
   .conversor {

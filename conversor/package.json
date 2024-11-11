@@ -5,6 +5,7 @@
   "dependencies": {
     "bootstrap": "^5.3.3",
     "cra-template-cats": "1.1.4",
+    "fs": "^0.0.1-security",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.27.0",

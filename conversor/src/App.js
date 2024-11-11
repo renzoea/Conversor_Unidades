@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import Conversor from "./components/Conversor";
-
+import Contacto from "./components/contacto";
 import React, { useRef } from 'react';
 
 import "./App.css";
@@ -39,6 +39,7 @@ function App() {
       </div>
 
       <Routes>
+        <Route path="/Contacto" element={<Contacto />} />
         <Route path="/" element={<Conversor />} />
         <Route path="/acercade" element={<AcercaDe />} />
       </Routes>

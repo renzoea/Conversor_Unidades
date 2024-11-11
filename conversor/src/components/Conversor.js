@@ -9,6 +9,8 @@ const Conversor = () => {
   const [resultado, setResultado] = useState(null);
   const [options, setOptions] = useState([]);
   const [categoria, setCategoria] = useState('');
+  const [data, setData] = useState('');
+  const [message, setMessage] = useState('');
   const tmp = ["Celcius", "Kelvin", "Fahrenheit"];
   const ener = ["kilo Whats", "Joule", "Kilo Joule", "Caloria-gramo", "Kilo Caloria", "Volt Hora", "Kilo Volt Hora"];
   const frec = ["Herz", "Kiloherz", "Megaherz", "Gigaherz"];
@@ -330,7 +332,40 @@ const Conversor = () => {
       cambiarUnidad(Opciones);
     
   };
+  // Guardar y Obtener datos
+  const guardarDatos = async () => {
+    try {
+        const response = await fetch('http://localhost:3001/guardar', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+            body: JSON.stringify({ mensaje: 'Conversión no disponible' }),
+        });
 
+        if (!response.ok) {
+            throw new Error('Error al guardar los datos');
+        }
+
+        const res = await response.json();
+        setMessage(res.message);
+    } catch (error) {
+        console.log('Error:', error);
+    }
+};
+
+const obtenerDatos = async () => {
+    try {
+        const response = await fetch('http://localhost:3001/obtener');
+        if (!response.ok) {
+            throw new Error('Error al obtener los datos');
+        }
+
+        const res = await response.json();
+        console.log(res); // Mostrar los datos en consola
+        setMessage(res.message || 'No hay datos disponibles');
+    } catch (error) {
+        console.log('Error al obtener los datos:', error);
+    }
+};
 
 ///////////////////////////TABLAS DE CONVERSIONES///////////////////////////
 
@@ -419,6 +454,12 @@ const TablaConversiones = ({ conversiones, array }) => {
               </option>
             ))}
           </select>
+
+          <div>
+            <button onClick={guardarDatos}>Guardar Datos</button>
+            <button onClick={obtenerDatos}>Obtener Datos</button>
+            {message && <p>{message}</p>} {/* Muestra el mensaje guardado */}
+          </div>
         </div>
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="28px" fill="#000000">

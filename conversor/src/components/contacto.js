@@ -27,9 +27,9 @@ const Contacto = () => {
   return (<main className='main-contacto'>  <h1>Contáctanos</h1>
     <div className="contact-container">
       <div className="contact-info">
-        <p className='p-contacto'>📍 Dirección: Calle Falsa 123, Buenos Aires, Argentina</p>
+        <p className='p-contacto'>📍 Dirección: Ramos Mejia, Buenos Aires, Argentina</p>
         <p className='p-contacto'>📞 Teléfono: +54 11 1234-5678</p>
-        <p className='p-contacto'>📧 Correo: contacto@ejemplo.com</p>
+        <p className='p-contacto'>📧 Correo: Convertodo@convert.com.ar</p>
       </div>
       <div className="form-container">
       

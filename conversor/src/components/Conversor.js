@@ -10,7 +10,8 @@ const Conversor = () => {
   const [options, setOptions] = useState([]);
   const [categoria, setCategoria] = useState('');
   const [data, setData] = useState('');
-  const [message, setMessage] = useState('');
+  
+  const [conversionesGuardadas, setConversionesGuardadas] = useState([]);
   const tmp = ["Celcius", "Kelvin", "Fahrenheit"];
   const ener = ["kilo Whats", "Joule", "Kilo Joule", "Caloria-gramo", "Kilo Caloria", "Volt Hora", "Kilo Volt Hora"];
   const frec = ["Herz", "Kiloherz", "Megaherz", "Gigaherz"];
@@ -335,10 +336,19 @@ const Conversor = () => {
   // Guardar y Obtener datos
   const guardarDatos = async () => {
     try {
+        // Crear el objeto con la conversión
+        const conversionData = {
+            valor: parseFloat(valor),
+            unidad1: unidad1,
+            unidad2: unidad2,
+            resultado: resultado
+        };
+
+        // Enviar al servidor para que lo guarde en el archivo
         const response = await fetch('http://localhost:3001/guardar', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-            body: JSON.stringify({ mensaje: 'Conversión no disponible' }),
+            body: JSON.stringify(conversionData),
         });
 
         if (!response.ok) {
@@ -346,27 +356,30 @@ const Conversor = () => {
         }
 
         const res = await response.json();
-        setMessage(res.message);
+
     } catch (error) {
         console.log('Error:', error);
     }
 };
 
 const obtenerDatos = async () => {
-    try {
-        const response = await fetch('http://localhost:3001/obtener');
-        if (!response.ok) {
-            throw new Error('Error al obtener los datos');
-        }
-
-        const res = await response.json();
-        console.log(res); // Mostrar los datos en consola
-        setMessage(res.message || 'No hay datos disponibles');
-    } catch (error) {
-        console.log('Error al obtener los datos:', error);
+  try {
+    const response = await fetch('http://localhost:3001/obtener');
+    if (!response.ok) {
+      throw new Error('Error al obtener los datos');
     }
+    const data = await response.json();
+    
+    // Si la respuesta es un solo objeto, lo ponemos en un array
+    setConversionesGuardadas([data]); 
+  } catch (error) {
+    console.log('Error al obtener los datos:', error);
+  }
 };
 
+useEffect(() => {
+  obtenerDatos();
+}, []); // Se ejecuta una vez al cargar el componente
 ///////////////////////////TABLAS DE CONVERSIONES///////////////////////////
 
 const TablaConversiones = ({ conversiones, array }) => {
@@ -427,15 +440,40 @@ const TablaConversiones = ({ conversiones, array }) => {
       </div>
       
       <div className="div2">
-        <h1>Conversor de Unidades</h1>
-        <p>
-          Bienvenido a nuestro conversor de unidades, selecciona una categoria
-          para comenzar a convertir tus unidades. Si deseas saber más sobre nosotros, revisa la sección <Link to="/acercade">Acerca de</Link> para más información.
-        </p>
-      </div>
+    <h1>Conversor de Unidades</h1>
+    <p>
+      Bienvenido a nuestro conversor de unidades, selecciona una categoría
+      para comenzar a convertir tus unidades. Si deseas saber más sobre nosotros, revisa la sección <Link to="/acercade">Acerca de</Link> para más información.
+    </p>
+    <hr className="hrs" />
+
+   
+
+    <div>
+      {Array.isArray(conversionesGuardadas) && conversionesGuardadas.length > 0 ? (
+        <div>
+          {(() => {
+            let items = [];
+            // Recorrer el array de conversiones guardadas (aunque tenga solo un objeto)
+            for (let i = 0; i < conversionesGuardadas.length; i++) {
+              const conversion = conversionesGuardadas[i];
+              items.push(
+                <p key={i}>
+                  {conversion.valor} {conversion.unidad1} = {conversion.resultado} {conversion.unidad2}
+                </p>
+              );
+            }
+            return items;
+          })()}
+        </div>
+      ) : (
+        <p>No hay conversiones guardadas</p>
+      )}
+    </div>
+  </div>
 
       <div className="div3">
-        <hr className="hrs" />
+        
         <div className="conversor">
           <div className="select">
           <input 
@@ -455,11 +493,7 @@ const TablaConversiones = ({ conversiones, array }) => {
             ))}
           </select>
 
-          <div>
-            <button onClick={guardarDatos}>Guardar Datos</button>
-            <button onClick={obtenerDatos}>Obtener Datos</button>
-            {message && <p>{message}</p>} {/* Muestra el mensaje guardado */}
-          </div>
+          
         </div>
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="28px" fill="#000000">
@@ -481,6 +515,11 @@ const TablaConversiones = ({ conversiones, array }) => {
           </select>
             
           </div>
+          
+        </div>           
+        <div className='div-btn'>
+         <button className='form-button' onClick={guardarDatos}>Guardar Datos</button>
+        <button className='form-button' onClick={obtenerDatos}>Obtener Datos</button>
         </div>
         <hr className="hrs" />
       </div>

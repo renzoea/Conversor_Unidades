@@ -9,10 +9,11 @@ function App() {
   return (
     <Router>
       <div className="App">
+        
         <nav>
           <figure>
-            <a href="index.html">
-              <img class="logo" id="logo" alt="Logo" />
+            <a href="/">
+              <img class="logo" id="logo" src="./img/logo.png" alt="Logo" />
             </a>
           </figure>
 
@@ -29,15 +30,23 @@ function App() {
             <li>
               <Link to="/acercade">Acerca de</Link>
             </li>
+            <li>
+              <Link to="/Contacto">Contacto</Link>
+            </li>
           </ul>
         </nav>
+
       </div>
 
       <Routes>
         <Route path="/" element={<Conversor />} />
         <Route path="/acercade" element={<AcercaDe />} />
       </Routes>
+      <footer class="footer">
+  <p>&copy; 2024 Convertodo. Todos los derechos reservados.</p>
+</footer>
     </Router>
+
   );
 }
 

@@ -1,4 +1,4 @@
-import React, { useState, useRef  } from 'react';
+import React, { useState, useRef, useEffect  } from 'react';
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 
 
@@ -13,7 +13,7 @@ const Conversor = () => {
   const ener = ["kilo Whats", "Joule", "Kilo Joule", "Caloria-gramo", "Kilo Caloria", "Volt Hora", "Kilo Volt Hora"];
   const frec = ["Herz", "Kiloherz", "Megaherz", "Gigaherz"];
   const lon = ["Metro", "Kilometro", "Centimetro", "Milimetro", "Milla", "Yarda", "Pie", "Pulgada"];
-  const timp = ["Micro segundo", "Mili Segundo", "Segundo", "Minuto", "Hora", "Dia", "Semana", "Mes", "Año"];
+  const timp = ["Mili Segundo", "Micro Segundo", "Segundo", "Minuto", "Hora", "Dia", "Semana", "Mes", "Año"];
 
   // Objeto de conversiones
   let conversiones = {
@@ -210,91 +210,92 @@ const Conversor = () => {
                 'Pie': (X) => X / 12 // 1 pulgada = 1/12 pies
             }/// Tiempo
             ,
-                'Microsegundo': {
-                    'Microsegundo': (X) => X, // Conversión a sí mismo
-                    'Milisegundo': (X) => X / 1000, // 1 microsegundo = 1/1000 milisegundos
-                    'Segundo': (X) => X / 1e6, // 1 microsegundo = 1/1,000,000 segundos
-                    'Minuto': (X) => X / 6e7, // 1 microsegundo = 1/60,000,000 minutos
-                    'Hora': (X) => X / 3.6e9, // 1 microsegundo = 1/3,600,000,000 horas
-                    'Día': (X) => X / 8.64e10, // 1 microsegundo = 1/86,400,000,000 días
-                    'Semana': (X) => X / 6.048e11, // 1 microsegundo = 1/604,800,000,000 semanas
-                    'Mes': (X) => X / 2.628e12, // 1 microsegundo = 1/2,628,000,000,000 meses
-                    'Año': (X) => X / 3.154e13 // 1 microsegundo = 1/31,540,000,000,000 años
+                'Micro Segundo': {
+                    'Micro Segundo': (X) => X, // Conversión a sí mismo
+                    'Mili Segundo': (X) => X / 1000, // 1 Micro Segundo = 1/1000 Mili Segundos
+                    'Segundo': (X) => X / 1e6, // 1 Micro Segundo = 1/1,000,000 segundos
+                    'Minuto': (X) => X / 6e7, // 1 Micro Segundo = 1/60,000,000 minutos
+                    'Hora': (X) => X / 3.6e9, // 1 Micro Segundo = 1/3,600,000,000 horas
+                    'Dia': (X) => X / 8.64e10, // 1 Micro Segundo = 1/86,400,000,000 Dias
+                    'Semana': (X) => X / 6.048e11, // 1 Micro Segundo = 1/604,800,000,000 semanas
+                    'Mes': (X) => X / 2.628e12, // 1 Micro Segundo = 1/2,628,000,000,000 meses
+                    'Año': (X) => X / 3.154e13 // 1 Micro Segundo = 1/31,540,000,000,000 años
                 },
-                'Milisegundo': {
-                    'Milisegundo': (X) => X, // Conversión a sí mismo
-                    'Microsegundo': (X) => X * 1000, // 1 milisegundo = 1000 microsegundos
-                    'Segundo': (X) => X / 1000, // 1 milisegundo = 1/1000 segundos
-                    'Minuto': (X) => X / 60000, // 1 milisegundo = 1/60,000 minutos
-                    'Hora': (X) => X / 3.6e6, // 1 milisegundo = 1/3,600,000 horas
-                    'Día': (X) => X / 8.64e7, // 1 milisegundo = 1/86,400,000 días
-                    'Semana': (X) => X / 6.048e8, // 1 milisegundo = 1/604,800,000 semanas
-                    'Mes': (X) => X / 2.628e9, // 1 milisegundo = 1/2,628,000,000 meses
-                    'Año': (X) => X / 3.154e10 // 1 milisegundo = 1/31,540,000,000 años
+                'Mili Segundo': {
+                    'Mili Segundo': (X) => X, // Conversión a sí mismo
+                    'Micro Segundo': (X) => X * 1000, // 1 Mili Segundo = 1000 Micro Segundos
+                    'Segundo': (X) => X / 1000, // 1 Mili Segundo = 1/1000 segundos
+                    'Minuto': (X) => X / 60000, // 1 Mili Segundo = 1/60,000 minutos
+                    'Hora': (X) => X / 3.6e6, // 1 Mili Segundo = 1/3,600,000 horas
+                    'Dia': (X) => X / 8.64e7, // 1 Mili Segundo = 1/86,400,000 Dias
+                    'Semana': (X) => X / 6.048e8, // 1 Mili Segundo = 1/604,800,000 semanas
+                    'Mes': (X) => X / 2.628e9, // 1 Mili Segundo = 1/2,628,000,000 meses
+                    'Año': (X) => X / 3.154e10 // 1 Mili Segundo = 1/31,540,000,000 años
                 },
                 'Segundo': {
                     'Segundo': (X) => X, // Conversión a sí mismo
-                    'Microsegundo': (X) => X * 1e6, // 1 segundo = 1,000,000 microsegundos
-                    'Milisegundo': (X) => X * 1000, // 1 segundo = 1000 milisegundos
+                    'Micro Segundo': (X) => X * 1e6, // 1 segundo = 1,000,000 Micro Segundos
+                    'Mili Segundo': (X) => X * 1000, // 1 segundo = 1000 Mili Segundos
                     'Minuto': (X) => X / 60, // 1 segundo = 1/60 minutos
                     'Hora': (X) => X / 3600, // 1 segundo = 1/3600 horas
-                    'Día': (X) => X / 86400, // 1 segundo = 1/86,400 días
+                    'Dia': (X) => X / 86400, // 1 segundo = 1/86,400 Dias
                     'Semana': (X) => X / 604800, // 1 segundo = 1/604,800 semanas
                     'Mes': (X) => X / 2.628e6, // 1 segundo = 1/2,628,000 meses
                     'Año': (X) => X / 3.154e7 // 1 segundo = 1/31,540,000 años
                 },
                 'Minuto': {
                     'Minuto': (X) => X, // Conversión a sí mismo
-                    'Microsegundo': (X) => X * 6e7, // 1 minuto = 60,000,000 microsegundos
-                    'Milisegundo': (X) => X * 60000, // 1 minuto = 60,000 milisegundos
+                    'Micro Segundo': (X) => X * 6e7, // 1 minuto = 60,000,000 Micro Segundos
+                    'Mili Segundo': (X) => X * 60000, // 1 minuto = 60,000 Mili Segundos
                     'Segundo': (X) => X * 60, // 1 minuto = 60 segundos
                     'Hora': (X) => X / 60, // 1 minuto = 1/60 horas
-                    'Día': (X) => X / 1440, // 1 minuto = 1/1440 días
+                    'Dia': (X) => X / 1440, // 1 minuto = 1/1440 Dias
                     'Semana': (X) => X / 10080, // 1 minuto = 1/10,080 semanas
                     'Mes': (X) => X / 43800, // 1 minuto = 1/43,800 meses
                     'Año': (X) => X / 525600 // 1 minuto = 1/525,600 años
                 },
                 'Hora': {
                     'Hora': (X) => X, // Conversión a sí mismo
-                    'Microsegundo': (X) => X * 3.6e9, // 1 hora = 3,600,000,000 microsegundos
-                    'Milisegundo': (X) => X * 3.6e6, // 1 hora = 3,600,000 milisegundos
+                    'Micro Segundo': (X) => X * 3.6e9, // 1 hora = 3,600,000,000 Micro Segundos
+                    'Mili Segundo': (X) => X * 3.6e6, // 1 hora = 3,600,000 Mili Segundos
                     'Segundo': (X) => X * 3600, // 1 hora = 3600 segundos
                     'Minuto': (X) => X * 60, // 1 hora = 60 minutos
-                    'Día': (X) => X / 24, // 1 hora = 1/24 días
+                    'Dia': (X) => X / 24, // 1 hora = 1/24 Dias
                     'Semana': (X) => X / 168, // 1 hora = 1/168 semanas
                     'Mes': (X) => X / 730, // 1 hora = 1/730 meses
                     'Año': (X) => X / 8760 // 1 hora = 1/8760 años
                 },
-                'Día': {
-                    'Día': (X) => X, // Conversión a sí mismo
-                    'Microsegundo': (X) => X * 8.64e10, // 1 día = 86,400,000,000 microsegundos
-                    'Milisegundo': (X) => X * 8.64e7, // 1 día = 86,400,000 milisegundos
-                    'Segundo': (X) => X * 86400, // 1 día = 86,400 segundos
-                    'Minuto': (X) => X * 1440, // 1 día = 1440 minutos
-                    'Hora': (X) => X * 24, // 1 día = 24 horas
-                    'Semana': (X) => X / 7, // 1 día = 1/7 semanas
-                    'Mes': (X) => X / 30.417, // 1 día = 1/30.417 meses
-                    'Año': (X) => X / 365 // 1 día = 1/365 años
+                'Dia': {
+                    'Dia': (X) => X, // Conversión a sí mismo
+                    'Micro Segundo': (X) => X * 8.64e10, // 1 Dia = 86,400,000,000 Micro Segundos
+                    'Mili Segundo': (X) => X * 8.64e7, // 1 Dia = 86,400,000 Mili Segundos
+                    'Segundo': (X) => X * 86400, // 1 Dia = 86,400 segundos
+                    'Minuto': (X) => X * 1440, // 1 Dia = 1440 minutos
+                    'Hora': (X) => X * 24, // 1 Dia = 24 horas
+                    'Semana': (X) => X / 7, // 1 Dia = 1/7 semanas
+                    'Mes': (X) => X / 30.417, // 1 Dia = 1/30.417 meses
+                    'Año': (X) => X / 365 // 1 Dia = 1/365 años
                 },
                 'Semana': {
                     'Semana': (X) => X, // Conversión a sí mismo
-                    'Microsegundo': (X) => X * 6.048e11, // 1 semana = 604,800,000,000 microsegundos
-                    'Milisegundo': (X) => X * 6.048e8, // 1 semana = 604,800,000 milisegundos
+                    'Micro Segundo': (X) => X * 6.048e11, // 1 semana = 604,800,000,000 Micro Segundos
+                    'Mili Segundo': (X) => X * 6.048e8, // 1 semana = 604,800,000 Mili Segundos
                     'Segundo': (X) => X * 604800, // 1 semana = 604,800 segundos
                     'Minuto': (X) => X * 10080, // 1 semana = 10,080 minutos
                     'Hora': (X) => X * 168, // 1 semana = 168 horas
-                    'Día': (X) => X * 7, // 1 semana = 7 días
+                    'Dia': (X) => X * 7, // 1 semana = 7 Dias
                     'Mes': (X) => X / 4.345, // 1 semana = 1/4.345 meses
                     'Año': (X) => X / 52.143 // 1 semana = 1/52.143 años
                 },
                 'Mes': {
                     'Mes': (X) => X, // Conversión a sí mismo
-                    'Microsegundo': (X) => X * 2.628e12, // 1 mes = 2,628,000,000,000 microsegundos
-                    'Milisegundo': (X) => X * 2.628e9, // 1 mes = 2,628,000,000 milisegundos
+                    'Micro Segundo': (X) => X * 2.628e12, // 1 mes = 2,628,000,000,000 Micro Segundos
+                    'Mili Segundo': (X) => X * 2.628e9, // 1 mes = 2,628,000,000 Mili Segundos
                     'Segundo': (X) => X * 2.628e6, // 1 mes = 2,628,000 segundos
                     'Minuto': (X) => X * 43800 // 1 mes
 
-        }}
+        }};
+
 
         const cambiarUnidad = (array) => {
           setOptions(array);
@@ -303,32 +304,91 @@ const Conversor = () => {
   const handleConvertir = () => {
     if (conversiones[unidad1] && conversiones[unidad1][unidad2]) {
       const result = conversiones[unidad1][unidad2](parseFloat(valor));
-      setResultado(result.toFixed(2));
+      setResultado(result.toFixed(4));
     } else {
       setResultado('Conversión no disponible');
     }
   };
+  useEffect(() => {
+    handleConvertir();
+  }, [valor, unidad1, unidad2]); 
+
   // logica select
   const handleCategoriaChange = (categoria) => {
     setCategoria(categoria);
+    var Opciones;
     switch (categoria) {
-      case 'temperatura': var Opciones=tmp; break;
-      case 'frecuencia' : var Opciones=frec; break;
-      case 'longitud': var Opciones=lon; break;
-      case 'tiempo' : var Opciones=timp; break;
-      case 'energia': var Opciones=ener; break;}
+      case 'temperatura':  Opciones=tmp; break;
+      case 'frecuencia' : Opciones=frec; break;
+      case 'longitud': Opciones=lon; break;
+      case 'tiempo' : Opciones=timp; break;
+      case 'energia': Opciones=ener; break;
+    }
+    setUnidad1('');
+    setUnidad2('');
+    setResultado(null);
       cambiarUnidad(Opciones);
     
   };
 
+
+///////////////////////////TABLAS DE CONVERSIONES///////////////////////////
+
+const TablaConversiones = ({ conversiones, array }) => {
+  const tablas = [];
+
+  for (let categoria in conversiones) {
+    const conversionesPorCategoria = conversiones[categoria];
+
+    const filas = [];
+    
+    for (let unidad in conversionesPorCategoria) {
+      if (array.includes(unidad)) {
+        const conversion = conversionesPorCategoria[unidad];
+        filas.push(
+          
+          <tr key={unidad}>
+            <td>{unidad}</td>
+            <td>{`${conversion}`}</td>
+          </tr>
+        );
+      }
+    }
+    if (filas.length > 0) {
+      tablas.push(
+        
+        <div   key={categoria}>
+          
+          <table>
+            <thead>
+              <tr>
+                <th className="encabezado">Unidad</th>
+                <th className="encabezado">Conversión</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filas}
+            </tbody>
+          </table>
+        </div>
+      );
+    }
+  }
+
+  return  <div class="div4" id="tablas">{tablas}</div>;
+};
+
+
+
+
   return (
-    <div className="parent">
+    <main className="parent">
       <div className="div1 botones">
-        <button className="btnSelect" onClick={() => handleCategoriaChange('temperatura')}>Temperatura</button>
-        <button className="btnSelect" onClick={() => handleCategoriaChange('frecuencia')}>Frecuencia</button>
-        <button className="btnSelect" onClick={() => handleCategoriaChange('longitud')}>Longitud</button>
-        <button className="btnSelect" onClick={() => handleCategoriaChange('tiempo')}>Tiempo</button>
-        <button className="btnSelect" onClick={() => handleCategoriaChange('energia')}>Energía</button>
+        <button className={`btnSelect ${categoria === 'temperatura' ? 'btnSelected' : ''}`} onClick={() => handleCategoriaChange('temperatura')}>Temperatura</button>
+        <button className={`btnSelect ${categoria === 'frecuencia' ? 'btnSelected' : ''}`} onClick={() => handleCategoriaChange('frecuencia')}>Frecuencia</button>
+        <button className={`btnSelect ${categoria === 'longitud' ? 'btnSelected' : ''}`} onClick={() => handleCategoriaChange('longitud')}>Longitud</button>
+        <button className={`btnSelect ${categoria === 'tiempo' ? 'btnSelected' : ''}`} onClick={() => handleCategoriaChange('tiempo')}>Tiempo</button>
+        <button className={`btnSelect ${categoria === 'energia' ? 'btnSelected' : ''}`} onClick={() => handleCategoriaChange('energia')}>Energía</button>
       </div>
       
       <div className="div2">
@@ -343,37 +403,55 @@ const Conversor = () => {
         <hr className="hrs" />
         <div className="conversor">
           <div className="select">
-            <input type="number" value={valor} onChange={(e) => setValor(e.target.value)} />
-            <select onChange={(e) => setUnidad1(e.target.value)} value={unidad1}>
+          <input 
+            type="number" 
+            value={valor} 
+            onChange={(e) => setValor(e.target.value)} 
+          />
+          <select 
+            value={unidad1} 
+            onChange={(e) => setUnidad1(e.target.value)}
+          >
             <option value="">Seleccione aquí</option>
-            {options.map((opcion, index) => (
-          <option key={`select1-${index}`} value={opcion}>{opcion}</option>
-        ))}
-            </select>
-          </div>
+            {options.map((option, index) => (
+              <option key={`select1-${index}`} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </div>
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="28px" fill="#000000">
             <path d="M160-280v-120h640v120H160Zm0-280v-120h640v120H160Z" />
           </svg>
           
           <div className="select">
-            <input type="number" value={resultado} readOnly />
-            <select value={unidad2} onChange={(e) => setUnidad2(e.target.value)}>
-              <option value="">Seleccione aquí</option>
-              {options.map((opcion, index) => (
-          <option key={`select2-${index}`} value={opcion}>{opcion}</option>
-        ))}
-            </select>
+          <input type="number" value={resultado} readOnly />
+          <select 
+            value={unidad2} 
+            onChange={(e) => setUnidad2(e.target.value)}
+          >
+            <option value="">Seleccione aquí</option>
+            {options.map((opcion, index) => (
+              <option key={`select2-${index}`} value={opcion}>
+                {opcion}
+              </option>
+            ))}
+          </select>
+            
           </div>
         </div>
-        <button onClick={handleConvertir}>Convertir</button>
         <hr className="hrs" />
       </div>
       
-      <div className="div4" id="tablas">
-        {/* Aquí se pueden mostrar tablas de conversiones si se implementa */}
-      </div>
-    </div>
+      
+    
+        {categoria && (
+          <TablaConversiones conversiones={conversiones} array={options} />
+        )}
+     
+    </main>
+   
   );
 };
 

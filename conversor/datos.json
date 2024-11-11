@@ -1,6 +1,6 @@
 {
-  "valor": 11,
-  "unidad1": "",
-  "unidad2": "",
-  "resultado": "Conversión no disponible"
+  "valor": 24,
+  "unidad1": "Kilometro",
+  "unidad2": "Centimetro",
+  "resultado": "2400000.0000"
 }

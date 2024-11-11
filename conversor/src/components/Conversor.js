@@ -378,7 +378,10 @@ const obtenerDatos = async () => {
 };
 
 useEffect(() => {
-  obtenerDatos();
+  setValor('');
+  setUnidad1('');
+  setUnidad2('');
+  setResultado('');
 }, []); // Se ejecuta una vez al cargar el componente
 ///////////////////////////TABLAS DE CONVERSIONES///////////////////////////
 
@@ -454,11 +457,10 @@ const TablaConversiones = ({ conversiones, array }) => {
         <div>
           {(() => {
             let items = [];
-            // Recorrer el array de conversiones guardadas (aunque tenga solo un objeto)
             for (let i = 0; i < conversionesGuardadas.length; i++) {
               const conversion = conversionesGuardadas[i];
               items.push(
-                <p key={i}>
+                <p class='parrafito' key={i}>
                   {conversion.valor} {conversion.unidad1} = {conversion.resultado} {conversion.unidad2}
                 </p>
               );
@@ -467,7 +469,7 @@ const TablaConversiones = ({ conversiones, array }) => {
           })()}
         </div>
       ) : (
-        <p>No hay conversiones guardadas</p>
+        <p class='parrafito'>No hay conversiones guardadas</p>
       )}
     </div>
   </div>

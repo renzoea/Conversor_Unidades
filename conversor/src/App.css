@@ -181,6 +181,9 @@ p {
   color: rgb(18, 18, 18);
   font-size: 2vw;
 }
+.parrafito{
+  color :rgb(235, 152, 49);;
+}
 .conversor {
   display: inline-flex;
   height: 50%;

@@ -1,6 +1,20 @@
-{
-  "valor": 24,
-  "unidad1": "Kilometro",
-  "unidad2": "Centimetro",
-  "resultado": "2400000.0000"
-}
+[
+  {
+    "valor": "213",
+    "unidad1": "Kelvin",
+    "unidad2": "Celcius",
+    "resultado": "-60.1500"
+  },
+  {
+    "valor": "123",
+    "unidad1": "Celcius",
+    "unidad2": "Fahrenheit",
+    "resultado": "253.4000"
+  },
+  {
+    "valor": "123123",
+    "unidad1": "Celcius",
+    "unidad2": "Kelvin",
+    "resultado": "123396.1500"
+  }
+]

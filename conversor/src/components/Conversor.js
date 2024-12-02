@@ -5,13 +5,16 @@ import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 const Conversor = () => {
   const [unidad1, setUnidad1] = useState('');
   const [unidad2, setUnidad2] = useState('');
-  const [valor, setValor] = useState(0);
-  const [resultado, setResultado] = useState(null);
+  const [valor, setValor] = useState('');
+  const [resultado, setResultado] = useState('');
   const [options, setOptions] = useState([]);
   const [categoria, setCategoria] = useState('');
   const [data, setData] = useState('');
   
   const [conversionesGuardadas, setConversionesGuardadas] = useState([]);
+
+
+
   const tmp = ["Celcius", "Kelvin", "Fahrenheit"];
   const ener = ["kilo Whats", "Joule", "Kilo Joule", "Caloria-gramo", "Kilo Caloria", "Volt Hora", "Kilo Volt Hora"];
   const frec = ["Herz", "Kiloherz", "Megaherz", "Gigaherz"];
@@ -334,55 +337,65 @@ const Conversor = () => {
     
   };
   // Guardar y Obtener datos
+  
+  
   const guardarDatos = async () => {
+      const dataToSend = {
+          valor: valor,          // Asegúrate de que estos valores estén correctamente definidos
+          unidad1: unidad1,
+          unidad2: unidad2,
+          resultado: resultado
+      };
+  
+      console.log("Datos que se enviarán:", dataToSend);  // Imprime los datos que se enviarán
+      try {
+          const response = await fetch('http://localhost:3001/guardar', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json', // Asegúrate de que el Content-Type sea 'application/json'
+              },
+              body: JSON.stringify(dataToSend),  // Convierte el objeto en JSON
+          });
+  
+          if (!response.ok) {
+              throw new Error('Error al guardar los datos');
+          }
+  
+          const responseData = await response.json();
+          console.log('Respuesta del servidor:', responseData);
+      } catch (error) {
+          console.error('Error al guardar los datos:', error);
+      }
+  };
+
+
+  // Función para obtener los datos guardados
+  const obtenerDatos = async () => {
     try {
-        // Crear el objeto con la conversión
-        const conversionData = {
-            valor: parseFloat(valor),
-            unidad1: unidad1,
-            unidad2: unidad2,
-            resultado: resultado
-        };
+        const response = await fetch('http://localhost:3001/obtener');
 
-        // Enviar al servidor para que lo guarde en el archivo
-        const response = await fetch('http://localhost:3001/guardar', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-            body: JSON.stringify(conversionData),
-        });
-
+        // Asegúrate de que la respuesta es correcta antes de intentar parsear
         if (!response.ok) {
-            throw new Error('Error al guardar los datos');
+            throw new Error(`Error al obtener datos: ${response.statusText}`);
         }
 
-        const res = await response.json();
-
+        const data = await response.json();
+        console.log(data); // Muestra los datos recibidos
     } catch (error) {
-        console.log('Error:', error);
+        console.log(`Error al obtener los datos: ${error.message}`);
     }
 };
 
-const obtenerDatos = async () => {
-  try {
-    const response = await fetch('http://localhost:3001/obtener');
-    if (!response.ok) {
-      throw new Error('Error al obtener los datos');
-    }
-    const data = await response.json();
-    
-    // Si la respuesta es un solo objeto, lo ponemos en un array
-    setConversionesGuardadas([data]); 
-  } catch (error) {
-    console.log('Error al obtener los datos:', error);
-  }
-};
+
+
 
 useEffect(() => {
   setValor('');
   setUnidad1('');
   setUnidad2('');
   setResultado('');
-}, []); // Se ejecuta una vez al cargar el componente
+}, []); 
+
 ///////////////////////////TABLAS DE CONVERSIONES///////////////////////////
 
 const TablaConversiones = ({ conversiones, array }) => {
@@ -425,6 +438,7 @@ const TablaConversiones = ({ conversiones, array }) => {
       );
     }
   }
+
 
   return  <div class="div4" id="tablas">{tablas}</div>;
 };

@@ -71,7 +71,16 @@ body{
 
 .main-contacto{
   background-color: rgb(84, 84, 84);
-  height: 500px;
+  height: fit-content;
+  padding: 20px;
+}
+
+.tabla{
+
+width: 600px;
+text-align: center;
+ 
+
 }
 
 nav {
@@ -180,6 +189,26 @@ p {
   justify-content: center;
   color: rgb(18, 18, 18);
   font-size: 2vw;
+}
+
+.confirmacion {
+
+
+  background-color: #4caf50;
+  color: white;
+  font-size: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+}
+.error {
+  background-color: #f44336;
+  color: white;
+  font-size: 12px;
+  padding: 10px;
+  border-radius: 5px;
+  
 }
 .parrafito{
   color :rgb(235, 152, 49);;
@@ -403,6 +432,18 @@ select:focus {
   border: solid 3px black;
   border-radius: 5px;
   margin: 20px;
+
+  cursor: pointer;
+}
+.form-button5 {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #000000;
+  background-color: rgb(235, 152, 49);
+  border: solid 3px black;
+  border-radius: 5px;
+width: 100%;
 
   cursor: pointer;
 }

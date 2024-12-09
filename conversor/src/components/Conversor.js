@@ -11,6 +11,8 @@ const Conversor = () => {
   const [resultado, setResultado] = useState('');
   const [options, setOptions] = useState([]);
   const [categoria, setCategoria] = useState('');
+  const [error, setError] = useState(null);
+  const [confirmacion,setConfirmacion] = useState(null);
   const [data, setData] = useState('');
   const [ultimoDato, setUltimoDato] = useState(null);
   const [conversionesGuardadas, setConversionesGuardadas] = useState([]);
@@ -368,16 +370,20 @@ onAuthStateChanged(auth, (user) => {
       cambiarUnidad(Opciones);
     
   };
-  // Guardar y Obtener datos
+
   
 
 
     const guardarConversion = async () => {
       if (!user) {
        
-        alert('Tiene que estar iniciado para guardar la conversión');
+        setError('Debes iniciar sesión para guardar la conversión');
       
      } else {
+      if (!unidad1 || !unidad2 || !valor) {
+        setError('Completa todos los espacios');
+        return;
+      }
       try {
         const docRef = await addDoc(collection(db, 'conversiones'), {
           id_usuario: user.uid,
@@ -386,11 +392,9 @@ onAuthStateChanged(auth, (user) => {
           segundo_unidad: unidad2,
           segundo_valor: resultado,
           tipo: categoria
-
-
-        
         });
         console.log("Conversión guardada con ID: ", docRef.id);
+        setConfirmacion('Conversión guardada con éxito');
       } catch (e) {
         console.error("Error al guardar la conversión: ", e);
       }
@@ -459,6 +463,24 @@ const TablaConversiones = ({ conversiones, array }) => {
 
 
 
+  useEffect(() => {
+    if (confirmacion) {
+      const timer = setTimeout(() => {
+        setConfirmacion(null);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [confirmacion]);
+
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        setError(null);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
+
   return (
     <main className="parent">
       <div className="div1 botones">
@@ -473,26 +495,9 @@ const TablaConversiones = ({ conversiones, array }) => {
     <h1>Conversor de Unidades</h1>
     <p>
       Bienvenido a nuestro conversor de unidades, selecciona una categoría
-      para comenzar a convertir tus unidades. Si deseas saber más sobre nosotros, revisa la sección <Link to="/acercade">Acerca de</Link> para más información.
+      para comenzar a convertir tus unidades. Si deseas saber más sobre nosotros.
     </p>
     <hr className="hrs" />
-
-   
-
-    <div>
-      {conversionesGuardadas && conversionesGuardadas.length > 0 ? (
-        <div>
-          <p className='parrafito'>
-            {conversionesGuardadas[conversionesGuardadas.length - 1].valor} 
-            {conversionesGuardadas[conversionesGuardadas.length - 1].unidad1} = 
-            {conversionesGuardadas[conversionesGuardadas.length - 1].resultado} 
-            {conversionesGuardadas[conversionesGuardadas.length - 1].unidad2}
-          </p>
-        </div>
-    ) : (
-    <p className='parrafito'>No hay conversiones guardadas</p>
-                )}
-</div>
 </div>
       <div className="div3">
         
@@ -514,8 +519,6 @@ const TablaConversiones = ({ conversiones, array }) => {
               </option>
             ))}
           </select>
-
-          
         </div>
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="28px" fill="#000000">
@@ -535,25 +538,27 @@ const TablaConversiones = ({ conversiones, array }) => {
               </option>
             ))}
           </select>
-            
+          </div>
+        </div> 
+                  
+        <div className='div-btn'>
+          <div>          {error && <p className="error">{error}</p>}
+          {confirmacion && <p className="confirmacion">{confirmacion}</p>}
           </div>
           
-        </div>           
-        <div className='div-btn'>
          <button className='form-button' onClick={guardarConversion}>Guardar Datos</button>
-        <Link to="/historial"><button className='form-button'>Obtener Datos</button></Link>
+        
+        <Link to="/historial"><button className='form-button'>Ver conversiones guardadas</button></Link>
         </div>
+        
         <hr className="hrs" />
       </div>
       
-      
-    
         {categoria && (
           <TablaConversiones conversiones={conversiones} array={options} />
         )}
      
     </main>
-   
   );
 };
 

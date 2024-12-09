@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [confirmationMessage, setConfirmationMessage] = useState('');
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,8 +18,15 @@ const Login = () => {
       await signInWithEmailAndPassword(auth, email, password);
       setConfirmationMessage('Inicio de sesión exitoso.');
       setError('');
+
+      const from = location.state?.from?.pathname || '/';
+      if (from === '/registro') {
+        navigate('/');
+      } else {
+        navigate(from);
+      }
     } catch (error) {
-      setError('Error al iniciar sesión: ' + error.message);
+      setError('Error al iniciar sesión');
       setConfirmationMessage('');
     }
   };
@@ -47,10 +57,10 @@ const Login = () => {
                 required
               />
             </div>
-            <button type="submit" className="form-button">Iniciar Sesion</button>
+            <button type="submit" className="form-button5">Iniciar Sesion</button>
           </form>
-          {error && <p className="error-message">{error}</p>}
-          {confirmationMessage && <p className="confirmation-message">{confirmationMessage}</p>}
+          {error && <p className="error">{error}</p>}
+          {confirmationMessage && <p className="confirmacion">{confirmationMessage}</p>}
         </div>
       </div>
     </main>

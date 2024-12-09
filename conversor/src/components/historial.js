@@ -8,7 +8,11 @@ import { db } from '../firebase';
 
 
 const Historial = ({ }) => {
-    const [conversiones, setConversiones] = useState([]);
+
+    
+
+
+
     const [user, setUser] = useState(null);
   
     useEffect(() => {
@@ -17,14 +21,14 @@ const Historial = ({ }) => {
         if (user) {
           setUser(user);
         } else {
-          setUser(null);
+        window.location.href = '/login';
         }
       });
   
       return () => unsubscribe();
     }, []);
 
-
+    const [conversiones, setConversiones] = useState([]);
     useEffect(() => {
         const obtenerConversiones = async () => {
             try {
@@ -41,35 +45,33 @@ const Historial = ({ }) => {
     },);
 
     return (
+        <main className="main-contacto">
         <div>
             <h1>Historial de Conversiones</h1>
             {conversiones.length === 0 ? (
                 <p>No hay conversiones guardadas.</p>
             ) : (
-                <table>
+                <table className='tabla'>
                     <thead>
                         <tr>
-                            <th>Unidad 1</th>
-                            <th>Valor 1</th>
-                            <th>Unidad 2</th>
-                            <th>Valor 2</th>
-                            <th>Tipo</th>
+                        <th className="encabezado">Tipo</th>
+
+                            <th className="encabezado">Conversiones</th>
+                          
                         </tr>
                     </thead>
                     <tbody>
                         {conversiones.map((conversion, index) => (
-                            <tr key={index}>
-                                <td>{conversion.primer_unidad}</td>
-                                <td>{conversion.primer_valor}</td>
-                                <td>{conversion.segundo_unidad}</td>
-                                <td>{conversion.segundo_valor}</td>
-                                <td>{conversion.tipo}</td>
+                            <tr key={index}>  <td>{conversion.tipo}</td>
+
+                            <td>{conversion.primer_valor} {conversion.primer_unidad} = {conversion.segundo_valor} {conversion.segundo_unidad}</td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
             )}
         </div>
+    </main>
     );
 };
 

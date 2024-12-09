@@ -28,7 +28,7 @@ const Registro = () => {
       setConfirmationMessage('¡Registro exitoso! Bienvenido.');
       
       // Redirect to another page (e.g., "/dashboard")
-      setTimeout(() => navigate('/dashboard'), 2000);
+      setTimeout(() => navigate('/login'), 2000);
     } catch (error) {
       setError('Error en el registro: ' + error.message);
     }
@@ -40,16 +40,7 @@ const Registro = () => {
       <div className="contact-container">
         <div className="form-container">
           <form onSubmit={handleSubmit} className="contact-form">
-            <div className="form-group">
-              <label className="form-label">Nombre:</label>
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="form-input"
-                required
-              />
-            </div>
+          
             <div className="form-group">
               <label className="form-label">Correo electrónico:</label>
               <input
@@ -70,10 +61,10 @@ const Registro = () => {
                 required
               />
             </div>
-            <button type="submit" className="form-button">Registrarse</button>
+            <button type="submit" className="form-button5">Registrarse</button>
           </form>
-          {confirmationMessage && <p className="confirmation-message">{confirmationMessage}</p>}
-          {error && <p className="error-message">{error}</p>}
+          {confirmationMessage && <p className="confirmacion">{confirmationMessage}</p>}
+          {error && <p className="error">{error}</p>}
         </div>
       </div>
     </main>

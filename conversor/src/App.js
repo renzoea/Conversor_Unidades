@@ -63,7 +63,7 @@ function App() {
             ) : (
               <>
                 <li>
-                  <Link to="/registro">Registro</Link>
+                  <Link to="/registro">Registrarse</Link>
                 </li>
                 <li>
                   <Link to="/login">Iniciar Sesión</Link>

@@ -7,7 +7,7 @@ const Registro = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmationMessage, setConfirmationMessage] = useState('');
+  const [confirmacion, setConfirmacion] = useState('');
   const [error, setError] = useState('');
 
   const navigate = useNavigate();
@@ -15,19 +15,17 @@ const Registro = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    setConfirmationMessage('');
+    setConfirmacion('');
 
     try {
-      // Create user with email and password
+  
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // You can add the user's name to their profile here if needed
-      // await updateProfile(user, { displayName: name });
-
-      setConfirmationMessage('¡Registro exitoso! Bienvenido.');
+  
+      setConfirmacion('¡Registro exitoso! Bienvenido.');
       
-      // Redirect to another page (e.g., "/dashboard")
+
       setTimeout(() => navigate('/login'), 2000);
     } catch (error) {
       setError('Error en el registro: ' + error.message);
@@ -63,7 +61,7 @@ const Registro = () => {
             </div>
             <button type="submit" className="form-button5">Registrarse</button>
           </form>
-          {confirmationMessage && <p className="confirmacion">{confirmationMessage}</p>}
+          {confirmacion && <p className="confirmacion">{confirmacion}</p>}
           {error && <p className="error">{error}</p>}
         </div>
       </div>

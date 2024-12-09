@@ -323,20 +323,20 @@ const Conversor = () => {
         const cambiarUnidad = (array) => {
           setOptions(array);
         };
-// Importa la biblioteca de autenticación de Firebase
 
 
-// Inicializa la autenticación de Firebase
+
+
 const auth = getAuth();
 
-// Verifica si hay un usuario autenticado
+
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    // Hay un usuario autenticado
+
     console.log("Usuario autenticado:", user.uid);
-    // Puedes acceder a la información del usuario aquí
+
   } else {
-    // No hay un usuario autenticado
+   
     console.log("No hay un usuario autenticado");
   }
 });
@@ -353,7 +353,7 @@ onAuthStateChanged(auth, (user) => {
     handleConvertir();
   }, [valor, unidad1, unidad2]); 
 
-  // logica select
+
   const handleCategoriaChange = (categoria) => {
     setCategoria(categoria);
     var Opciones;
@@ -401,7 +401,7 @@ onAuthStateChanged(auth, (user) => {
       }
     };
 
-// Función para obtener los datos
+
 
 
 

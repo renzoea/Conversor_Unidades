@@ -20,13 +20,10 @@ const Contacto = () => {
     e.preventDefault();
     setConfirmationMessage('¡Gracias por contactarnos! Te responderemos pronto.');
     
-    // Guardar datos enviados en el estado `submittedData`
+
     setSubmittedData({ name, email, message });
     
-    // Limpiar campos
-   
 
-    // Redirigir a otra página (por ejemplo, a "/gracias")
     navigate('/Confirmacion');
   };
 

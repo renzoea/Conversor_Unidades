@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getDatabase } from 'firebase/database';
+import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -10,12 +10,13 @@ const firebaseConfig = {
     messagingSenderId: "309225253260",
     appId: "1:309225253260:web:81320d86cb50598b5c4ea9",
     measurementId: "G-W2MMVZHR6E"
-  };
-// Inicializar Firebase
+};
+
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Obtener instancias de los servicios que vas a usar
-const database = getDatabase(app);
+// Get instances of the services you'll use
+const db = getFirestore(app);
 const auth = getAuth(app);
 
-export { app, database, auth };
+export { app, db, auth };

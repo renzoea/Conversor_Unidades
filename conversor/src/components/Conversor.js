@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect  } from 'react';
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
-
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { db } from '../firebase';
 
 const Conversor = () => {
   const [unidad1, setUnidad1] = useState('');
@@ -12,7 +14,20 @@ const Conversor = () => {
   const [data, setData] = useState('');
   const [ultimoDato, setUltimoDato] = useState(null);
   const [conversionesGuardadas, setConversionesGuardadas] = useState([]);
-
+    const [user, setUser] = useState(null);
+  
+    useEffect(() => {
+      const auth = getAuth();
+      const unsubscribe = onAuthStateChanged(auth, (user) => {
+        if (user) {
+          setUser(user);
+        } else {
+          setUser(null);
+        }
+      });
+  
+      return () => unsubscribe();
+    }, []);
 
 
   const tmp = ["Celcius", "Kelvin", "Fahrenheit"];
@@ -306,6 +321,23 @@ const Conversor = () => {
         const cambiarUnidad = (array) => {
           setOptions(array);
         };
+// Importa la biblioteca de autenticación de Firebase
+
+
+// Inicializa la autenticación de Firebase
+const auth = getAuth();
+
+// Verifica si hay un usuario autenticado
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // Hay un usuario autenticado
+    console.log("Usuario autenticado:", user.uid);
+    // Puedes acceder a la información del usuario aquí
+  } else {
+    // No hay un usuario autenticado
+    console.log("No hay un usuario autenticado");
+  }
+});
 
   const handleConvertir = () => {
     if (conversiones[unidad1] && conversiones[unidad1][unidad2]) {
@@ -338,57 +370,34 @@ const Conversor = () => {
   };
   // Guardar y Obtener datos
   
-  
-  const guardarDatos = async () => {
-    const dataToSend = {
-        valor: valor,
-        unidad1: unidad1,
-        unidad2: unidad2,
-        resultado: resultado
+
+
+    const guardarConversion = async () => {
+      if (!user) {
+       
+        alert('Tiene que estar iniciado para guardar la conversión');
+      
+     } else {
+      try {
+        const docRef = await addDoc(collection(db, 'conversiones'), {
+          id_usuario: user.uid,
+          primer_unidad: unidad1,
+          primer_valor: valor,
+          segundo_unidad: unidad2,
+          segundo_valor: resultado,
+          tipo: categoria
+
+
+        
+        });
+        console.log("Conversión guardada con ID: ", docRef.id);
+      } catch (e) {
+        console.error("Error al guardar la conversión: ", e);
+      }
+      }
     };
 
-    try {
-        const response = await fetch('http://localhost:3001/guardar', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(dataToSend),
-        });
-
-        if (!response.ok) {
-            throw new Error('Error al guardar los datos');
-        }
-
-        const responseData = await response.json();
-        console.log('Datos guardados:', responseData);
-
-        // Actualizamos el estado de conversiones guardadas
-        setConversionesGuardadas(prevState => [...prevState, dataToSend]);
-
-    } catch (error) {
-        console.error('Error al guardar los datos:', error);
-    }
-};
-
 // Función para obtener los datos
-const obtenerDatos = async () => {
-    try {
-        const response = await fetch('http://localhost:3001/obtener');
-        if (!response.ok) {
-            throw new Error('Error al obtener los datos');
-        }
-
-        const data = await response.json();
-        console.log('Datos obtenidos:', data);
-
-        // Asignar los datos obtenidos al estado
-        setConversionesGuardadas(data);
-
-    } catch (error) {
-        console.log(`Error al obtener los datos: ${error.message}`);
-    }
-};
 
 
 
@@ -531,8 +540,8 @@ const TablaConversiones = ({ conversiones, array }) => {
           
         </div>           
         <div className='div-btn'>
-         <button className='form-button' onClick={guardarDatos}>Guardar Datos</button>
-        <button className='form-button' onClick={obtenerDatos}>Obtener Datos</button>
+         <button className='form-button' onClick={guardarConversion}>Guardar Datos</button>
+        <Link to="/historial"><button className='form-button'>Obtener Datos</button></Link>
         </div>
         <hr className="hrs" />
       </div>

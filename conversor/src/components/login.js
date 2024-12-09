@@ -1,33 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 const Login = () => {
-  const [name, setName] = useState(localStorage.getItem('name') || '');
-  const [email, setEmail] = useState(localStorage.getItem('email') || '');
-  const [message, setMessage] = useState(localStorage.getItem('message') || '');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const [confirmationMessage, setConfirmationMessage] = useState('');
-  const [submittedData, setSubmittedData] = useState(null);
 
-  const navigate = useNavigate(); // Hook para la navegación
-
-  useEffect(() => {
-    localStorage.setItem('name', name);
-    localStorage.setItem('email', email);
-    localStorage.setItem('message', message);
-  }, [name, email, message]);
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setConfirmationMessage('¡Gracias por contactarnos! Te responderemos pronto.');
-    
-    // Guardar datos enviados en el estado `submittedData`
-    setSubmittedData({ name, email, message });
-    
-    // Limpiar campos
-   
+    const auth = getAuth();
 
-    // Redirigir a otra página (por ejemplo, a "/gracias")
-    navigate('/Confirmacion');
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      setConfirmationMessage('Inicio de sesión exitoso.');
+      setError('');
+    } catch (error) {
+      setError('Error al iniciar sesión: ' + error.message);
+      setConfirmationMessage('');
+    }
   };
 
   return (
@@ -36,16 +27,6 @@ const Login = () => {
       <div className="contact-container">
         <div className="form-container">
           <form onSubmit={handleSubmit} className="contact-form">
-            <div className="form-group">
-              <label className="form-label">Nombre:</label>
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="form-input"
-                required
-              />
-            </div>
             <div className="form-group">
               <label className="form-label">Correo electrónico:</label>
               <input
@@ -56,9 +37,19 @@ const Login = () => {
                 required
               />
             </div>
-           
+            <div className="form-group">
+              <label className="form-label">Contraseña:</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="form-input"
+                required
+              />
+            </div>
             <button type="submit" className="form-button">Iniciar Sesion</button>
           </form>
+          {error && <p className="error-message">{error}</p>}
           {confirmationMessage && <p className="confirmation-message">{confirmationMessage}</p>}
         </div>
       </div>

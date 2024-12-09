@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import Conversor from "./components/Conversor";
 import Contacto from "./components/contacto";
+import Registro from "./components/registro";
+import Login from "./components/login";
 import { Confirmacion } from "./components/Confirmacion";
 import React, { useRef } from 'react';
 
@@ -45,6 +47,8 @@ function App() {
         <Route path="/Confirmacion" element={<Confirmacion />} />
         <Route path="/" element={<Conversor />} />
         <Route path="/acercade" element={<AcercaDe />} />
+        <Route path="/registro" element={<Registro />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
       <footer class="footer">
   <p>&copy; 2024 Convertodo. Todos los derechos reservados.</p>

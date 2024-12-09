@@ -10,7 +10,7 @@ const Conversor = () => {
   const [options, setOptions] = useState([]);
   const [categoria, setCategoria] = useState('');
   const [data, setData] = useState('');
-  
+  const [ultimoDato, setUltimoDato] = useState(null);
   const [conversionesGuardadas, setConversionesGuardadas] = useState([]);
 
 
@@ -340,47 +340,51 @@ const Conversor = () => {
   
   
   const guardarDatos = async () => {
-      const dataToSend = {
-          valor: valor,          // Asegúrate de que estos valores estén correctamente definidos
-          unidad1: unidad1,
-          unidad2: unidad2,
-          resultado: resultado
-      };
-  
-      console.log("Datos que se enviarán:", dataToSend);  // Imprime los datos que se enviarán
-      try {
-          const response = await fetch('http://localhost:3001/guardar', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json', // Asegúrate de que el Content-Type sea 'application/json'
-              },
-              body: JSON.stringify(dataToSend),  // Convierte el objeto en JSON
-          });
-  
-          if (!response.ok) {
-              throw new Error('Error al guardar los datos');
-          }
-  
-          const responseData = await response.json();
-          console.log('Respuesta del servidor:', responseData);
-      } catch (error) {
-          console.error('Error al guardar los datos:', error);
-      }
-  };
+    const dataToSend = {
+        valor: valor,
+        unidad1: unidad1,
+        unidad2: unidad2,
+        resultado: resultado
+    };
 
+    try {
+        const response = await fetch('http://localhost:3001/guardar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(dataToSend),
+        });
 
-  // Función para obtener los datos guardados
-  const obtenerDatos = async () => {
+        if (!response.ok) {
+            throw new Error('Error al guardar los datos');
+        }
+
+        const responseData = await response.json();
+        console.log('Datos guardados:', responseData);
+
+        // Actualizamos el estado de conversiones guardadas
+        setConversionesGuardadas(prevState => [...prevState, dataToSend]);
+
+    } catch (error) {
+        console.error('Error al guardar los datos:', error);
+    }
+};
+
+// Función para obtener los datos
+const obtenerDatos = async () => {
     try {
         const response = await fetch('http://localhost:3001/obtener');
-
-        // Asegúrate de que la respuesta es correcta antes de intentar parsear
         if (!response.ok) {
-            throw new Error(`Error al obtener datos: ${response.statusText}`);
+            throw new Error('Error al obtener los datos');
         }
 
         const data = await response.json();
-        console.log(data); // Muestra los datos recibidos
+        console.log('Datos obtenidos:', data);
+
+        // Asignar los datos obtenidos al estado
+        setConversionesGuardadas(data);
+
     } catch (error) {
         console.log(`Error al obtener los datos: ${error.message}`);
     }
@@ -467,27 +471,20 @@ const TablaConversiones = ({ conversiones, array }) => {
    
 
     <div>
-      {Array.isArray(conversionesGuardadas) && conversionesGuardadas.length > 0 ? (
+      {conversionesGuardadas && conversionesGuardadas.length > 0 ? (
         <div>
-          {(() => {
-            let items = [];
-            for (let i = 0; i < conversionesGuardadas.length; i++) {
-              const conversion = conversionesGuardadas[i];
-              items.push(
-                <p class='parrafito' key={i}>
-                  {conversion.valor} {conversion.unidad1} = {conversion.resultado} {conversion.unidad2}
-                </p>
-              );
-            }
-            return items;
-          })()}
+          <p className='parrafito'>
+            {conversionesGuardadas[conversionesGuardadas.length - 1].valor} 
+            {conversionesGuardadas[conversionesGuardadas.length - 1].unidad1} = 
+            {conversionesGuardadas[conversionesGuardadas.length - 1].resultado} 
+            {conversionesGuardadas[conversionesGuardadas.length - 1].unidad2}
+          </p>
         </div>
-      ) : (
-        <p class='parrafito'>No hay conversiones guardadas</p>
-      )}
-    </div>
-  </div>
-
+    ) : (
+    <p className='parrafito'>No hay conversiones guardadas</p>
+                )}
+</div>
+</div>
       <div className="div3">
         
         <div className="conversor">

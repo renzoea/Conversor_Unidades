@@ -28,48 +28,25 @@ const requestListener = (req, res) => {
         req.on('data', chunk => {
             body += chunk.toString(); // Concatenar los datos
         });
-    
+
         req.on('end', () => {
-            console.log('Cuerpo recibido:', body); // Muestra el cuerpo recibido
-    
+            console.log('Cuerpo recibido:', body);
+
             try {
-                const newConversion = JSON.parse(body); // Intentamos parsear el cuerpo como JSON
-                console.log('Datos parseados:', newConversion); // Muestra los datos parseados
-    
-                // Validar datos recibidos
+                const newConversion = JSON.parse(body); // Parsear el cuerpo como JSON
+                console.log('Datos parseados:', newConversion);
+
+                // Validar los datos recibidos
                 if (!newConversion.valor || !newConversion.unidad1 || !newConversion.unidad2 || newConversion.resultado === undefined) {
                     throw new Error('Datos incompletos o inválidos');
                 }
-    
-                // Leer archivo y agregar la nueva conversión
-                let data = [];
-                try {
-                    // Intentar leer el archivo
-                    data = fs.readFileSync(filePath, 'utf8'); // Leer el archivo
-                    console.log('Datos leídos del archivo:', data); // Muestra los datos leídos del archivo
-    
-                    if (data) {
-                        data = JSON.parse(data); // Parsear el archivo si contiene datos
-                        console.log('Datos después de parsear:', data); // Muestra los datos después de parsear
-                    } else {
-                        console.log('El archivo está vacío. Iniciando un array vacío');
-                        data = []; // Si no hay datos, iniciar un array vacío
-                    }
-                } catch (error) {
-                    console.error('Error al leer o parsear el archivo:', error.message);
-                    data = []; // Si ocurre un error al leer el archivo, iniciar un array vacío
-                }
-    
-                // Agregar la nueva conversión al arreglo de datos
-                data.push(newConversion);
-                console.log('Datos después de agregar la conversión:', data); // Muestra los datos con la nueva conversión
-    
-                // Sobrescribir el archivo con los nuevos datos
-                fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf8');
-                console.log('Archivo actualizado correctamente');
-    
+
+                // Sobrescribir el archivo con solo el nuevo objeto (un solo objeto dentro de un array)
+                fs.writeFileSync(filePath, JSON.stringify([newConversion], null, 2), 'utf8'); // Guardar solo un objeto dentro de un array
+                console.log('Archivo sobrescrito con la nueva conversión');
+
                 res.writeHead(200);
-                res.end(JSON.stringify({ message: 'Conversión guardada correctamente' }));
+                res.end(JSON.stringify({ message: 'Conversión guardada y datos anteriores eliminados' }));
             } catch (error) {
                 console.error('Error al procesar los datos:', error.message);
                 res.writeHead(400);
@@ -78,19 +55,22 @@ const requestListener = (req, res) => {
         });
     } else if (req.method === 'GET' && req.url === '/obtener') {
         try {
-            let data = fs.readFileSync(filePath, 'utf8'); // Leer el archivo
-            console.log('Datos leídos del archivo para GET:', data); // Muestra los datos leídos en GET
-    
+            let data = fs.readFileSync(filePath, 'utf8'); // lee el archivo
+            console.log('Datos leídos del archivo para GET:', data); // muestra los datos
+
             if (!data) {
-                data = []; // Si el archivo está vacío, devolver un array vacío
+                data = []; //muestra un array vacio si no nada en datos.json
             } else {
-                data = JSON.parse(data); // Parsear si contiene datos
+                data = JSON.parse(data); //muestra los datos 
             }
-    
+
+            // llamar al ultimo dato
+            const lastData = data[data.length - 1] || {}; // si no hay devuelve vacio
+
             res.writeHead(200);
-            res.end(JSON.stringify(data)); // Enviar los datos en formato JSON
+            res.end(JSON.stringify(lastData)); // envia en formato json
         } catch (error) {
-            console.error('Error al leer el archivo:', error.message);
+            console.error('Error al leer el archivo para obtener:', error.message);
             res.writeHead(500);
             res.end(JSON.stringify({ message: 'Error al leer el archivo', error: error.message }));
         }

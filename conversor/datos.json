@@ -1,20 +1,38 @@
 [
   {
-    "valor": "213",
-    "unidad1": "Kelvin",
-    "unidad2": "Celcius",
-    "resultado": "-60.1500"
-  },
-  {
-    "valor": "123",
+    "valor": "1231",
     "unidad1": "Celcius",
     "unidad2": "Fahrenheit",
-    "resultado": "253.4000"
+    "resultado": "2247.8000"
   },
   {
-    "valor": "123123",
+    "valor": "1231",
     "unidad1": "Celcius",
-    "unidad2": "Kelvin",
-    "resultado": "123396.1500"
+    "unidad2": "Fahrenheit",
+    "resultado": "2247.8000"
+  },
+  {
+    "valor": "4123",
+    "unidad1": "Kiloherz",
+    "unidad2": "Megaherz",
+    "resultado": "4.1230"
+  },
+  {
+    "valor": "4123",
+    "unidad1": "Fahrenheit",
+    "unidad2": "Celcius",
+    "resultado": "2272.7778"
+  },
+  {
+    "valor": "4123",
+    "unidad1": "Centimetro",
+    "unidad2": "Metro",
+    "resultado": "41.2300"
+  },
+  {
+    "valor": "20",
+    "unidad1": "Megaherz",
+    "unidad2": "Herz",
+    "resultado": "20000000.0000"
   }
 ]
